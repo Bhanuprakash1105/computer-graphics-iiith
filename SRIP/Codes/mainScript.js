@@ -16,7 +16,7 @@ controls = new THREE.OrbitControls(camera, renderer.domElement)
 
 // create the shape
 var geometry = new THREE.BoxGeometry(0.1, 0.4, 0.1);
-var geometry2 = new THREE.BoxGeometry(0.6, 0.1, 0.1);
+var geometry2 = new THREE.BoxGeometry(0.7, 0.1, 0.1);
 var geometry3 = new THREE.BoxGeometry(0.4, 0.1, 0.4);
 // create a material, color, or image structure
 var material = new THREE.MeshLambertMaterial( { color: 0x099556, flatShading: true, wireframe: false} );
@@ -30,9 +30,9 @@ scene.add( shoulder_elbow, elbow_forearm, wrist_palm);
 //To change the background color of the scene
 scene.background = new THREE.Color( 0x4F4F4F);
 			
-shoulder_elbow.position.set(-0.05,0.15,0);
-elbow_forearm.position.set(0.3,0,0);
-wrist_palm.position.set(0.7,0,0);
+shoulder_elbow.position.set(0.05,0.1,0);
+elbow_forearm.position.set(0.35,-0.05,0);
+wrist_palm.position.set(0.9,-0.05,0);
 
 camera.position.set(1,0.5,2);
 
@@ -73,10 +73,34 @@ for(i = -19; i < 20; i += 1 ) {
 	y = y - 0.1;
 }
 
+
+
+//X-direction
+var X = new THREE.Geometry();
+var x_material = new THREE.LineBasicMaterial({color: 'red'});
+X.vertices.push(new THREE.Vector3( -0.6, 0.3, 0));
+X.vertices.push(new THREE.Vector3(0.6, 0.3, 0));
+var X_direction = new THREE.Line(X, x_material, THREE.LineSegments);
+scene.add(X_direction);
+
+//Y-direction
+var Y = new THREE.Geometry();
+var y_material = new THREE.LineBasicMaterial({color: 'green'});
+Y.vertices.push(new THREE.Vector3( 0, 0.6, 0));
+Y.vertices.push(new THREE.Vector3(0, -0.6, 0));
+var Y_direction = new THREE.Line(Y, y_material, THREE.LineSegments);
+scene.add(Y_direction);
+
+//Z-direction
+var Z = new THREE.Geometry();
+var z_material = new THREE.LineBasicMaterial({color: 0x3CEFF1});
+Z.vertices.push(new THREE.Vector3( 0, 0.3, -0.6));
+Z.vertices.push(new THREE.Vector3(0, 0.3, 0.6));
+var Z_direction = new THREE.Line(Z, z_material, THREE.LineSegments);
+scene.add(Z_direction);
+
 //game logic
 var update = function() {
-	//cube.rotation.x += 0.01
-	//cube.rotation.y += 0.005
 };
 
 //draw scene
