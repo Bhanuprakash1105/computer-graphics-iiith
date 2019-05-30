@@ -30,9 +30,9 @@ scene.add( shoulder_elbow, elbow_forearm, wrist_palm);
 //To change the background color of the scene
 scene.background = new THREE.Color( 0x4F4F4F);
 			
-shoulder_elbow.position.set(0.05,0.1,0);
-elbow_forearm.position.set(0.35,-0.05,0);
-wrist_palm.position.set(0.9,-0.05,0);
+shoulder_elbow.position.set(0.05,-0.2,0);
+elbow_forearm.position.set(0.35,-0.35,0);
+wrist_palm.position.set(0.9,-0.35,0);
 
 camera.position.set(1,0.5,2);
 
@@ -73,33 +73,135 @@ for(i = -19; i < 20; i += 1 ) {
 	y = y - 0.1;
 }
 
-
-
-//X-direction
+//X-axis red line 
 var X = new THREE.Geometry();
 var x_material = new THREE.LineBasicMaterial({color: 'red'});
-X.vertices.push(new THREE.Vector3( -0.6, 0.3, 0));
-X.vertices.push(new THREE.Vector3(0.6, 0.3, 0));
+X.vertices.push(new THREE.Vector3( -0.6, 0, 0));
+X.vertices.push(new THREE.Vector3(0.6, 0, 0));
 var X_direction = new THREE.Line(X, x_material, THREE.LineSegments);
 scene.add(X_direction);
 
-//Y-direction
+//Y-axis green line 
 var Y = new THREE.Geometry();
-var y_material = new THREE.LineBasicMaterial({color: 'green'});
+var y_material = new THREE.LineBasicMaterial({color: 0x3EF70F});
 Y.vertices.push(new THREE.Vector3( 0, 0.6, 0));
 Y.vertices.push(new THREE.Vector3(0, -0.6, 0));
 var Y_direction = new THREE.Line(Y, y_material, THREE.LineSegments);
 scene.add(Y_direction);
 
-//Z-direction
+//Z-axis blue line
 var Z = new THREE.Geometry();
 var z_material = new THREE.LineBasicMaterial({color: 0x3CEFF1});
-Z.vertices.push(new THREE.Vector3( 0, 0.3, -0.6));
-Z.vertices.push(new THREE.Vector3(0, 0.3, 0.6));
+Z.vertices.push(new THREE.Vector3( 0, 0, -0.6));
+Z.vertices.push(new THREE.Vector3(0, 0, 0.6));
 var Z_direction = new THREE.Line(Z, z_material, THREE.LineSegments);
 scene.add(Z_direction);
 
-//game logic
+//Arrow +x
+var geometry = new THREE.ConeGeometry( 0.01, 0.1, 100, 100);
+var material = new THREE.MeshBasicMaterial( {color: 'red'} );
+var cone = new THREE.Mesh( geometry, material );
+cone.position.set(0.55,0,0);
+cone.rotation.x = 90*(Math.PI / 180);
+cone.rotation.z = 270*(Math.PI / 180);
+scene.add( cone );
+
+//Arrow -x
+var geometry = new THREE.ConeGeometry( 0.01, 0.1, 100, 100);
+var material = new THREE.MeshBasicMaterial( {color: 'red'} );
+var cone = new THREE.Mesh( geometry, material );
+cone.position.set(-0.55,0,0);
+cone.rotation.x = 90*(Math.PI / 180);
+cone.rotation.z = 90*(Math.PI / 180);
+scene.add( cone );
+
+//Arrow +y
+var geometry = new THREE.ConeGeometry( 0.01, 0.1, 100, 100);
+var material = new THREE.MeshBasicMaterial( {color: 0x3EF70F} );
+var cone = new THREE.Mesh( geometry, material );
+cone.position.set(0,0.55,0);
+scene.add( cone );
+
+//Arrow -y
+var geometry = new THREE.ConeGeometry( 0.01, 0.1, 100, 100);
+var material = new THREE.MeshBasicMaterial( {color: 0x3EF70F} );
+var cone = new THREE.Mesh( geometry, material );
+cone.position.set(0,-0.55,0);
+cone.rotation.x = 180*(Math.PI / 180);
+scene.add( cone );
+
+//Arrow +z
+var geometry = new THREE.ConeGeometry( 0.01, 0.1, 100, 100);
+var material = new THREE.MeshBasicMaterial( {color: 0x3CEFF1} );
+var cone = new THREE.Mesh( geometry, material );
+cone.position.set(0, 0, 0.55);
+cone.rotation.x = 90*(Math.PI / 180);
+scene.add( cone );
+
+//Arrow -z
+var geometry = new THREE.ConeGeometry( 0.01, 0.1, 100, 100);
+var material = new THREE.MeshBasicMaterial( {color: 0x3CEFF1} );
+var cone = new THREE.Mesh( geometry, material );
+cone.position.set(0, 0, -0.55);
+cone.rotation.x = -90*(Math.PI / 180);
+scene.add( cone );
+
+									//   EXTRA ARROWS
+
+//Arrow +x
+var geometry = new THREE.ConeGeometry( 0.01, 0.1, 100, 100);
+var material = new THREE.MeshBasicMaterial( {color: 0XF7FF00} );
+var cone = new THREE.Mesh( geometry, material );
+cone.position.set(0.15,0,0);
+cone.rotation.x = 90*(Math.PI / 180);
+cone.rotation.z = 270*(Math.PI / 180);
+scene.add( cone );
+
+//Arrow -x
+var geometry = new THREE.ConeGeometry( 0.01, 0.1, 100, 100);
+var material = new THREE.MeshBasicMaterial( {color: 0XF7FF00} );
+var cone = new THREE.Mesh( geometry, material );
+cone.position.set(-0.15,0,0);
+cone.rotation.x = 90*(Math.PI / 180);
+cone.rotation.z = 90*(Math.PI / 180);
+scene.add( cone );
+
+//Arrow +y
+var geometry = new THREE.ConeGeometry( 0.01, 0.1, 100, 100);
+var material = new THREE.MeshBasicMaterial( {color: 0x3EF70F} );
+var cone = new THREE.Mesh( geometry, material );
+cone.position.set(0,0.15,0);
+scene.add( cone );
+
+//Arrow -y
+var geometry = new THREE.ConeGeometry( 0.01, 0.1, 100, 100);
+var material = new THREE.MeshBasicMaterial( {color: 0x3EF70F} );
+var cone = new THREE.Mesh( geometry, material );
+cone.position.set(0,-0.15,0);
+cone.rotation.x = 180*(Math.PI / 180);
+scene.add( cone );
+
+//Arrow +z
+var geometry = new THREE.ConeGeometry( 0.01, 0.1, 100, 100);
+var material = new THREE.MeshBasicMaterial( {color: 0x3CEFF1} );
+var cone = new THREE.Mesh( geometry, material );
+cone.position.set(0, 0, 0.15);
+cone.rotation.x = 90*(Math.PI / 180);
+scene.add( cone );
+
+//Arrow -z
+var geometry = new THREE.ConeGeometry( 0.01, 0.1, 100, 100);
+var material = new THREE.MeshBasicMaterial( {color: 0x3CEFF1} );
+var cone = new THREE.Mesh( geometry, material );
+cone.position.set(0, 0, -0.15);
+cone.rotation.x = -90*(Math.PI / 180);
+scene.add( cone );
+
+// Text at Origin
+
+
+													//GAME LOGIC
+
 var update = function() {
 };
 
