@@ -1,8 +1,10 @@
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 100 );
+var camera = new THREE.PerspectiveCamera( 55, (0.7*window.innerWidth) / (0.95*window.innerHeight), 0.1, 100 );
 
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight);
+var heightScreen = 0.95*window.innerHeight;
+var widthScreen = 0.7*window.innerWidth;
+renderer.setSize( widthScreen, heightScreen);
 document.body.appendChild( renderer.domElement );
 
 window.addEventListener( 'resize' , function () {
