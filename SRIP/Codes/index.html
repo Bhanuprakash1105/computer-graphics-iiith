@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>	
+		<title>Hierachical Transformations: 3D Articulated Arm</title>
+
+		 <link rel = "stylesheet" type = "text/css" href = "mainStyle.css" />
+	
+	</head>
+
+	<body>
+		
+		<div class="mainBox">
+			<h2>3D Articulated Arm</h2>
+			<div class="noteBox">
+				<p>> Refersh the page (F5), if you observe any random orientation of content</p>
+				<p>> Use the mouse to observe the 3D structure in different angles</p>
+				<p>> Use the scroll wheel of mouse or scroll pad in laptop to zoom in or out</p>
+			</div>
+			<div class="innerBox">
+				<p><font size="1.5"><b>Hierarchical Transformations</b><br>The Set-up: Articulated Arm</font><br><br>
+				This experiment is designed to teach a hierarchical transformation model.<br>
+				The world represented as a tree is shown below. Each node is an instance. Each instance has 3 sections: Coodinate system, shape/instance, Transformation. Coordinate system is the local coordinate system of the instance. Shape/Instance is the geometry or a child instance of the cuurent instance. Multiple shapes and child instances can be added where the child instance is again a node.<br><br>Transformation is the set of transformations applied to the position of structure w.r.t the local coordinate system.
+				<br><br>All the values being shown can be edited by clicking on them. Any changes to the tree are reflected on the display and vice-versa.
+				<br><br>We constructed a hierarchical articulated arm model where each node/part follows a series of transformations from the root node to its current position. The top-most object in this hierarchy is the Shoulder followed by Elbow, Forearm, Wrist and Palm.</p>
+			</div>
+			<a href="index.html"><button id="world" class="w_Button">World</button></a>
+			<a href="display.html"><button id="display" class="d_Button">Display</button></a>
+		</div>
+		
+		<script src="..\Libraries\three.js"></script>
+		<script src="..\Libraries\three.min.js"></script>
+		<script src="..\Libraries\OrbitControls.js"></script>
+		<script type="text/javascript" src="mainScript.js"></script>
+
+	</body>	
+</html>

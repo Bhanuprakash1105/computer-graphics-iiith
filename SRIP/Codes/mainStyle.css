@@ -16,7 +16,7 @@ html, body {
 	float: right;
 	text-align: center;
 	font-family: Robot, sans-serif;
-	padding: 0px 8px 2px 8px;
+	padding: 0px 8px 1px 8px;
 	border: 2px solid #18D69B;
 	margin: 0%;
 	background-color: #FFFFFF;
@@ -27,13 +27,73 @@ html, body {
 	font-family: Robot, sans-serif;
 	margin-bottom: 2px;
 	padding-left: 10px;
-	padding-right: 2px;
+	padding-right: 6px;
 	color: red;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 	text-align: left;
 }
 
 h2 {
 	font-size: 16px;
+}
+
+.innerBox {
+	padding: 2px 6px 2px 7px;
+	border: 1px solid gray;
+	font-family: Roboto, sans-serif;
+	font-size: 13px;
+	text-align: left;
+	margin-bottom: 4px;
+	margin-top: 4px;
+}
+
+.w_Button{
+	float: left;
+	margin-top: 5px;
+	margin-left: 45px;
+	margin-right: 20px;
+	width: 100px;
+	height: 25px;
+	font-weight: bold;
+	color: #771AFD;
+}
+
+.d_Button{
+	float: right;
+	margin-top: 5px;
+	margin-right: 45px;
+	margin-left: 20px;
+	width: 100px;
+	height: 25px;
+	font-weight: bold;
+	color: #771AFD;
+}
+
+.xBox, .yBox, .zBox {
+	margin: 2px;
+	width: 60px;
+	height: 14px;
+	border: 1px solid black;
+}
+
+.displayFeatures {
+	margin-top: 6px;
+	margin-bottom: 6px;
+	border: 1px solid blue;
+	font-family: Roboto, sans-serif;
+	font-size: 14px;
+	color: blue;
+	padding: 10px;
+	text-align: left;
+}
+
+.innerTransformBox{
+	border: 1px solid green;
+	padding: 2px 4px 4px 4px;
+	font-family: Roboto, sans-serif;
+	font-size: 14px;
+	color: green;
+	font-weight: lighter;
+	margin-bottom: 10px;
 }

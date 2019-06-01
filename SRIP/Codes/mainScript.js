@@ -8,8 +8,8 @@ renderer.setSize( widthScreen, heightScreen);
 document.body.appendChild( renderer.domElement );
 
 window.addEventListener( 'resize' , function () {
-	var width = window.innerWidth;
-	var height = window.innerHeight;
+	var width = 0.7*window.innerWidth;
+	var height = 0.95*window.innerHeight;
 	renderer.setSize( width, height);
 	camera.aspect = width / height;
 });
@@ -31,7 +31,8 @@ scene.add( shoulder_elbow, elbow_forearm, wrist_palm);
 
 //To change the background color of the scene
 scene.background = new THREE.Color( 0x4F4F4F);
-			
+	
+//To set the position of objects,camera and lightSource		
 shoulder_elbow.position.set(0.05,-0.2,0);
 elbow_forearm.position.set(0.35,-0.35,0);
 wrist_palm.position.set(0.9,-0.35,0);
