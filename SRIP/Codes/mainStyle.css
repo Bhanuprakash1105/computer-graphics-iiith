@@ -70,11 +70,42 @@ h2 {
 	color: #771AFD;
 }
 
+.a_Button{
+	margin-top: 3px;
+	margin-right: 20px;
+	width: 120px;
+	height: 35px;
+	font-weight: bold;
+	color: blue;
+	font-size: 11px;
+}
+
+.r_Button{
+	margin-top: 3px;
+	margin-left: 20px;
+	width: 120px;
+	height: 35px;
+	font-weight: bold;
+	color: blue;
+	font-size: 11px;	
+}
+
+
+.t_Button{
+	margin-top: 5px;
+	margin-right: 45px;
+	width: 100px;
+	height: 25px;
+	font-weight: bold;
+	color: green;	
+}
+
 .xBox, .yBox, .zBox {
 	margin: 2px;
-	width: 60px;
-	height: 14px;
+	width: 45px;
+	height: 16px;
 	border: 1px solid black;
+	font-size: 12px;
 }
 
 .displayFeatures {
@@ -82,7 +113,7 @@ h2 {
 	margin-bottom: 6px;
 	border: 1px solid blue;
 	font-family: Roboto, sans-serif;
-	font-size: 14px;
+	font-size: 12px;
 	color: blue;
 	padding: 10px;
 	text-align: left;
@@ -92,8 +123,18 @@ h2 {
 	border: 1px solid green;
 	padding: 2px 4px 4px 4px;
 	font-family: Roboto, sans-serif;
-	font-size: 14px;
+	font-size: 13px;
 	color: green;
 	font-weight: lighter;
 	margin-bottom: 10px;
+}
+
+.special {
+	border: 1px solid blue;
+	margin: 2px;
+	padding: 4px;
+	font-size: 12px;
+	color: red;
+	font-weight: bold;
+	text-align: left;
 }

@@ -1,3 +1,3 @@
-I will make the buttons and checkBoxes in the Display tab functionable in my furthur commits.
+The MAIN HTML File is "index.html" file.
 
-The MAIN HTML File is "index.html" file
+I have completed the entire EXPERIMENT by adding all the required features and details.

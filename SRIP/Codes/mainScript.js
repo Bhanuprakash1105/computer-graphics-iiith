@@ -31,7 +31,7 @@ scene.add( shoulder_elbow, elbow_forearm, wrist_palm);
 
 //To change the background color of the scene
 scene.background = new THREE.Color( 0x4F4F4F);
-	
+
 //To set the position of objects,camera and lightSource		
 shoulder_elbow.position.set(0.05,-0.2,0);
 elbow_forearm.position.set(0.35,-0.35,0);
@@ -39,42 +39,43 @@ wrist_palm.position.set(0.9,-0.35,0);
 
 camera.position.set(1,0.5,2);
 
-var ambientLight = new THREE.AmbientLight(0x099556, 0.25);
-scene.add(ambientLight)
+var ambientLight = new THREE.AmbientLight(0x099556, 0.65);
+scene.add(ambientLight);
 
-var direclight = new THREE.DirectionalLight(0xffffff, 2);
-direclight.position.set(2,3,0.5);
-scene.add(direclight);
+var light = new THREE.PointLight( 0xffffff, 3, 100 );
+light.position.set( 0, 0.2, -0.5 );
+scene.add( light );
 
-var direclight2 = new THREE.DirectionalLight(0xffffff, 0.8);
-direclight2.position.set(-5,-6,0);
-scene.add(direclight2);
+// XY Grid for world/index;
+function world_drawXY() {
 
-// Vertical lines
-var x = 2, y = 2;
-var i = 0;
-for(i = -20; i < 20; i += 1 ) {
-	var grid = new THREE.Geometry();
-	var gridMaterial = new THREE.LineBasicMaterial({color: 'black'});
-	grid.vertices.push(new THREE.Vector3( x, y, 0));
-	grid.vertices.push(new THREE.Vector3( x, -y, 0));
-	var vertical = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
-	scene.add(vertical);
-	x = x - 0.1;
+	// Vertical lines
+	var x = 2, y = 2;
+	var i = 0;
+	for(i = -20; i < 20; i += 1 ) {
+		var grid = new THREE.Geometry();
+		var gridMaterial = new THREE.LineBasicMaterial({color: 'black'});
+		grid.vertices.push(new THREE.Vector3( x, y, 0));
+		grid.vertices.push(new THREE.Vector3( x, -y, 0));
+		var verticalyz = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+		scene.add(verticalyz);
+		x = x - 0.1;
+	}
+
+	//Horizontal lines
+	var x = 2, y = 2;
+	var i = 0;
+	for(i = -19; i < 20; i += 1 ) {
+		var grid = new THREE.Geometry();
+		var gridMaterial = new THREE.LineBasicMaterial({color: 'black'});
+		grid.vertices.push(new THREE.Vector3( x, y, 0));
+		grid.vertices.push(new THREE.Vector3( -x, y, 0));
+		var horizontalyz = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+		scene.add(horizontalyz);
+		y = y - 0.1;
+	}
 }
 
-//Horizontal lines
-var x = 2, y = 2;
-var i = 0;
-for(i = -19; i < 20; i += 1 ) {
-	var grid = new THREE.Geometry();
-	var gridMaterial = new THREE.LineBasicMaterial({color: 'black'});
-	grid.vertices.push(new THREE.Vector3( x, y, 0));
-	grid.vertices.push(new THREE.Vector3( -x, y, 0));
-	var horizontal = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
-	scene.add(horizontal);
-	y = y - 0.1;
-}
 
 //X-axis red line 
 var X = new THREE.Geometry();
@@ -200,7 +201,230 @@ cone.position.set(0, 0, -0.15);
 cone.rotation.x = -90*(Math.PI / 180);
 scene.add( cone );
 
-// Text at Origin
+//Dynamic JavaScript part taking inputs from checkBox
+
+// YZ Grid
+function drawYZ() {
+	var conditon = document.getElementById('yzAxis').checked;
+	var horizontalyz = [];
+	var verticalyz = [];
+	if( conditon == true) {
+
+		// Vertical lines
+		var z = 2, y = 2;
+		var i = 0;
+		for(i = -20; i < 20; i += 1 ) {
+			var grid = new THREE.Geometry();
+			var gridMaterial = new THREE.LineBasicMaterial({color: 'black'});
+			grid.vertices.push(new THREE.Vector3( 0, y, z));
+			grid.vertices.push(new THREE.Vector3( 0, -y, z));
+			verticalyz[i] = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+			scene.add(verticalyz[i]);
+			z = z - 0.1;
+		}
+
+		//Horizontal lines
+		var z = 2, y = 2;
+		var i = 0;
+		for(i = -19; i < 20; i += 1 ) {
+			var grid = new THREE.Geometry();
+			var gridMaterial = new THREE.LineBasicMaterial({color: 'black'});
+			grid.vertices.push(new THREE.Vector3( 0, y, z));
+			grid.vertices.push(new THREE.Vector3( 0, y, -z));
+			horizontalyz[i] = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+			scene.add(horizontalyz[i]);
+			y = y - 0.1;
+		}
+	}
+	
+	if( conditon == false) {
+		// Vertical lines
+		var z = 2, y = 2;
+		var i = 0;
+		for(i = -20; i < 20; i += 1 ) {
+			var grid = new THREE.Geometry();
+			var gridMaterial = new THREE.LineBasicMaterial({color: 0x4F4F4F});
+			grid.vertices.push(new THREE.Vector3( 0, y, z));
+			grid.vertices.push(new THREE.Vector3( 0, -y, z));
+			var verticalyz = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+			scene.add(verticalyz);
+			z = z - 0.1;
+		}
+
+		//Horizontal lines
+		var z = 2, y = 2;
+		var i = 0;
+		for(i = -19; i < 20; i += 1 ) {
+			var grid = new THREE.Geometry();
+			var gridMaterial = new THREE.LineBasicMaterial({color: 0x4F4F4F});
+			grid.vertices.push(new THREE.Vector3( 0, y, z));
+			grid.vertices.push(new THREE.Vector3( 0, y, -z));
+			var horizontalyz = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+			scene.add(horizontalyz);
+			y = y - 0.1;
+		}
+	}
+}
+
+// ZX Grid
+function drawZX() {
+	var conditon = document.getElementById('zxAxis').checked;
+	if( conditon == true) {
+
+		// Vertical lines
+		var x = 2, z = 2;
+		var i = 0;
+		for(i = -20; i < 20; i += 1 ) {
+			var grid = new THREE.Geometry();
+			var gridMaterial = new THREE.LineBasicMaterial({color: 'black'});
+			grid.vertices.push(new THREE.Vector3( x, 0, z));
+			grid.vertices.push(new THREE.Vector3( x, 0, -z));
+			var verticalyz = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+			scene.add(verticalyz);
+			x = x - 0.1;
+		}
+
+		//Horizontal lines
+		var x = 2, z = 2;
+		var i = 0;
+		for(i = -19; i < 20; i += 1 ) {
+			var grid = new THREE.Geometry();
+			var gridMaterial = new THREE.LineBasicMaterial({color: 'black'});
+			grid.vertices.push(new THREE.Vector3( x, 0, z));
+			grid.vertices.push(new THREE.Vector3( -x, 0, z));
+			var horizontalyz = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+			scene.add(horizontalyz);
+			z = z - 0.1;
+		}
+	} else {
+
+		// Vertical lines
+		var x = 2, z = 2;
+		var i = 0;
+		for(i = -20; i < 20; i += 1 ) {
+			var grid = new THREE.Geometry();
+			var gridMaterial = new THREE.LineBasicMaterial({color: 0x4F4F4F});
+			grid.vertices.push(new THREE.Vector3( x, 0, z));
+			grid.vertices.push(new THREE.Vector3( x, 0, -z));
+			var verticalyz = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+			scene.add(verticalyz);
+			x = x - 0.1;
+		}
+
+		//Horizontal lines
+		var x = 2, z = 2;
+		var i = 0;
+		for(i = -19; i < 20; i += 1 ) {
+			var grid = new THREE.Geometry();
+			var gridMaterial = new THREE.LineBasicMaterial({color: 0x4F4F4F});
+			grid.vertices.push(new THREE.Vector3( x, 0, z));
+			grid.vertices.push(new THREE.Vector3( -x, 0, z));
+			var horizontalyz = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+			scene.add(horizontalyz);
+			z = z - 0.1;
+		}
+	}
+}
+
+// XY Grid
+function drawXY() {
+	var conditon = document.getElementById('xyAxis').checked;
+	if( conditon == true) {
+
+		// Vertical lines
+		var x = 2, y = 2;
+		var i = 0;
+		for(i = -20; i < 20; i += 1 ) {
+			var grid = new THREE.Geometry();
+			var gridMaterial = new THREE.LineBasicMaterial({color: 'black'});
+			grid.vertices.push(new THREE.Vector3( x, y, 0));
+			grid.vertices.push(new THREE.Vector3( x, -y, 0));
+			var verticalyz = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+			scene.add(verticalyz);
+			x = x - 0.1;
+		}
+
+		//Horizontal lines
+		var x = 2, y = 2;
+		var i = 0;
+		for(i = -19; i < 20; i += 1 ) {
+			var grid = new THREE.Geometry();
+			var gridMaterial = new THREE.LineBasicMaterial({color: 'black'});
+			grid.vertices.push(new THREE.Vector3( x, y, 0));
+			grid.vertices.push(new THREE.Vector3( -x, y, 0));
+			var horizontalyz = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+			scene.add(horizontalyz);
+			y = y - 0.1;
+		}
+	} else {
+
+		// Vertical lines
+		var x = 2, y = 2;
+		var i = 0;
+		for(i = -20; i < 20; i += 1 ) {
+			var grid = new THREE.Geometry();
+			var gridMaterial = new THREE.LineBasicMaterial({color: 0x4F4F4F});
+			grid.vertices.push(new THREE.Vector3( x, y, 0));
+			grid.vertices.push(new THREE.Vector3( x, -y, 0));
+			var verticalyz = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+			scene.add(verticalyz);
+			x = x - 0.1;
+		}
+
+		//Horizontal lines
+		var x = 2, y = 2;
+		var i = 0;
+		for(i = -19; i < 20; i += 1 ) {
+			var grid = new THREE.Geometry();
+			var gridMaterial = new THREE.LineBasicMaterial({color: 0x4F4F4F});
+			grid.vertices.push(new THREE.Vector3( x, y, 0));
+			grid.vertices.push(new THREE.Vector3( -x, y, 0));
+			var horizontalyz = new THREE.Line(grid, gridMaterial, THREE.LineSegments);
+			scene.add(horizontalyz);
+			y = y - 0.1;
+		}
+	}
+}
+
+var xd = 0, yd = 0, zd = 0;
+
+function startTransistion() {
+	xd = Number(document.getElementById('xUnits').value);
+	yd = Number(document.getElementById('yUnits').value);
+	zd = Number(document.getElementById('zUnits').value);
+
+	shoulder_elbow.position.x += xd*0.1;
+	shoulder_elbow.position.y += yd*0.1;
+	shoulder_elbow.position.z += zd*0.1;
+
+	elbow_forearm.position.x += xd*0.1;
+	elbow_forearm.position.y += yd*0.1;
+	elbow_forearm.position.z += zd*0.1;
+
+	wrist_palm.position.x += xd*0.1;
+	wrist_palm.position.y += yd*0.1;
+	wrist_palm.position.z += zd*0.1;
+
+}
+
+function startAnimation() {
+	shoulder_elbow.position.set(0,-0.2,-0.05);
+	elbow_forearm.position.set(0,-0.1615,-0.35);
+	wrist_palm.position.set(0,0.1395,-0.625);
+	wrist_palm.rotation.x = 90*(Math.PI / 180);
+	elbow_forearm.rotation.y = 90*(Math.PI / 180);
+	elbow_forearm.rotation.x = 35*(Math.PI / 180);
+}
+
+
+function removeAnimation() {
+	wrist_palm.rotation.x = 0*(Math.PI / 180);
+	elbow_forearm.rotation.y = 0*(Math.PI / 180);
+	elbow_forearm.rotation.x = 0*(Math.PI / 180);
+	shoulder_elbow.position.set(0.05,-0.2,0);
+	elbow_forearm.position.set(0.35,-0.35,0);
+	wrist_palm.position.set(0.9,-0.35,0);
+}
 
 
 													//GAME LOGIC
