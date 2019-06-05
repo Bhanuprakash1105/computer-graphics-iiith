@@ -2,16 +2,16 @@
 	<head>	
 		<title>Hierachical Transformations: 3D Articulated Arm</title>
 
-		 <link rel = "stylesheet" type = "text/css" href = "mainStyle.css" />
+		<link rel = "stylesheet" type = "text/css" href = "..\css\worldStyle.css" />
 	
 	</head>
 
 	<body>
-		<script src="..\Libraries\three.js"></script>
-		<script src="..\Libraries\three.min.js"></script>
-		<script src="..\Libraries\OrbitControls.js"></script>
-		<script type="text/javascript" src="mainScript.js"></script>
-		
+		<script src="..\..\Libraries\three.js"></script>
+		<script src="..\..\Libraries\three.min.js"></script>
+		<script src="..\..\Libraries\OrbitControls.js"></script>
+		<script type="text/javascript" src="..\js\script.js"></script>
+
 		<div class="mainBox">
 			<h2>3D Articulated Arm</h2>
 			<div class="noteBox">
@@ -20,16 +20,16 @@
 				<p>> Use the scroll wheel of mouse or scroll pad in laptop to zoom in or out</p>
 			</div>
 			<div class="displayFeatures">
-				<input type="checkbox" id="xyAxis" onclick="drawXY()" checked="true"/>Draw XY grid<br><br>
+				<input type="checkbox" id="xyAxis" onclick="drawXY()" checked="true"/>Draw XY grid in the screen<br><br>
 				<script type="text/javascript"> drawXY(); </script>
-				<input type="checkbox" id="yzAxis" onclick="drawYZ()"/>Draw YZ grid<br><br>
-				<input type="checkbox" id="zxAxis" onclick="drawZX()" />Draw ZX grid<br><br>
+				<input type="checkbox" id="yzAxis" onclick="drawYZ()"/>Draw YZ grid in the screen<br><br>
+				<input type="checkbox" id="zxAxis" onclick="drawZX()" />Draw ZX grid in the screen<br><br>
 				<button id="animation" class="a_Button" onclick="startAnimation()">Show Animation</button>
 				<button id="animation" class="r_Button" onclick="removeAnimation()">Remove Animation</button>
 			</div>
 			<div class="innerTransformBox">
 				<p>Enter your co-ordinates here for changing the position</p>
-				<p class="special"> **Please start the transition with <font color="blue">(x, y, z) = (0.5, 0, 0)</font> coordinates for avoiding refershing of the page**<br><br>Avoid the alert symbols from the input boxes for decimal inputs</p>
+				<p class="special">>> Please start the transition with <font color="blue">( x, y, z ) = ( 0.5, 0, 0 )</font> units of distance for avoiding refershing of the page<br><br>>> Ignore the alert symbols from the input boxes for decimal inputs</p><br>
 				<form>
 					Transistion in X-axis: <input type="number" id="xUnits" class="xBox" value="0"><br><br>
 					Transistion in Y-axis: <input type="number" id="yUnits" class="yBox" value="0"><br><br>
@@ -37,7 +37,7 @@
 					<button class="t_button" onclick="startTransistion()">Submit</button>
 				</form>
 			</div>
-			<a href="index.html"><button id="world" class="w_Button">World</button></a>
+			<a href="world.html"><button id="world" class="w_Button">World</button></a>
 			<a href="display.html"><button id="display" class="d_Button">Display</button></a>
 		</div>
 		
