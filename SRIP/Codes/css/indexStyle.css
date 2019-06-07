@@ -39,15 +39,15 @@
 }
 
 .manualBox {
-	margin: 5px 40px 15px 40px;
-	padding: 3px 10px 5px 10px;
+	margin: 3px 40px 10px 40px;
+	padding: 3px 10px 3px 10px;
 	background-color: #C7B0FF;
 	color: white;
 	text-shadow: 3px 3px 10px #6124FF;
 }
 
 .manualContent {
-	padding: 13px;
+	padding: 3px 13px 3px 13px;
 	border: 3px solid #93E84E;
 	color: green;
 	font-family: Roboto, sans-serif;
@@ -58,26 +58,26 @@
 
 p, ol {
 	color: green;
-	font-size: 17px;
+	font-size: 15px;
 	text-shadow: 0px 0px white;
 }
 
 .nextButton {
 	color: #771AFD;
-	font-size: 20px;
+	font-size: 16px;
 	float: right;
 	font-family: Roboto, sans-serif;
-	margin: 14px 100px 5px 5px;
-	height: 50px;
+	margin: 11px 100px 5px 5px;
+	height: 35px;
 	width: 100px;
 }
 
 .previousButton {
 	color: #771AFD;
-	font-size: 20px;
+	font-size: 16px;
 	float: left;
 	font-family: Roboto, sans-serif;
-	margin: 14px 5px 5px 100px;
-	height: 50px;
+	margin: 11px 5px 5px 100px;
+	height: 35px;
 	width: 100px;
 }

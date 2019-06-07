@@ -16,24 +16,26 @@
 			<h2>3D Articulated Arm</h2>
 			<div class="noteBox">
 				<p>> Refersh the page (F5), if you observe any random orientation of content</p>
-				<p>> Use the mouse to observe the 3D structure in different angles</p>
-				<p>> Use the scroll wheel of mouse or scroll pad in laptop to zoom in or out</p>
+				<p>> Use the mouse and arrow keys and observe the changes in the screen</p>
 			</div>
 			<div class="displayFeatures">
+				<input type="checkbox" id="lockVertices" onclick="lockV()" checked="true"/>Lock vertices in the screen<br><br>
+				<script type="text/javascript"> lockV(); </script>
 				<input type="checkbox" id="xyAxis" onclick="drawXY()" checked="true"/>Draw XY grid in the screen<br><br>
 				<script type="text/javascript"> drawXY(); </script>
 				<input type="checkbox" id="yzAxis" onclick="drawYZ()"/>Draw YZ grid in the screen<br><br>
 				<input type="checkbox" id="zxAxis" onclick="drawZX()" />Draw ZX grid in the screen<br><br>
+				<input type="checkbox" id="2DCamera" onclick="camera2D()" checked="true"/>Show the simulation in 3D<br><br>
 				<button id="animation" class="a_Button" onclick="startAnimation()">Show Animation</button>
 				<button id="animation" class="r_Button" onclick="removeAnimation()">Remove Animation</button>
 			</div>
 			<div class="innerTransformBox">
 				<p>Enter your co-ordinates here for changing the position</p>
-				<p class="special">>> Please start the transition with <font color="blue">( x, y, z ) = ( 0.5, 0, 0 )</font> units of distance for avoiding refershing of the page<br><br>>> Ignore the alert symbols from the input boxes for decimal inputs</p><br>
-				<form>
-					Transistion in X-axis: <input type="number" id="xUnits" class="xBox" value="0"><br><br>
-					Transistion in Y-axis: <input type="number" id="yUnits" class="yBox" value="0"><br><br>
-					Transistion in Z-axis: <input type="number" id="zUnits" class="zBox" value="0"><br><br>
+				<p class="special"> Start the transition with deciaml inputs(specify the zeros also) only <font color="blue" size="1">( x, y, z ) = ( 0.5, 1.0, 0.75 )</font> units of distance for avoiding refershing of the page and start the transition with <b>smaller values</b><br><br> Ignore the alert symbols from the input boxes for decimal inputs</p><br>
+				<form> 
+					Transistion in X-axis: <input type="number" id="xUnits" class="xBox" value="0" /><br><br>
+					Transistion in Y-axis: <input type="number" id="yUnits" class="yBox" value="0" /><br><br>
+					Transistion in Z-axis: <input type="number" id="zUnits" class="zBox" value="0" /><br><br>
 					<button class="t_button" onclick="startTransistion()">Submit</button>
 				</form>
 			</div>
