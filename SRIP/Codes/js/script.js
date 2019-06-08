@@ -466,12 +466,31 @@ function wf_Transition() {
 //camera.position.set(0.5,-0.25,1.5)
 camera2.position.set(0.5,-0.25,2.2);
 
-var ambientLight = new THREE.AmbientLight(0x099556, 0.65);
+var ambientLight = new THREE.AmbientLight(0x099556, 0.7);
 scene.add(ambientLight);
 
 var light = new THREE.PointLight( 0xffffff, 3, 100 );
 light.position.set( 0, 0.2, -0.5 );
 scene.add( light );
+
+// Moving Light by using arrows
+var xSpeed = 2;
+var ySpeed = 2;
+
+document.addEventListener("keydown", onDocumentKeyDown, false);
+function onDocumentKeyDown(event) {
+    var keyCode = event.which;
+    if (keyCode == 40) {
+        light.position.y += ySpeed;
+    } else if (keyCode == 38) {
+        light.position.y -= ySpeed;
+    } else if (keyCode == 39) {
+        light.position.x -= xSpeed;
+    } else if (keyCode == 37) {
+        light.position.x += xSpeed;
+    }
+};
+
 
 // XY Grid for world/index;
 function world_drawXY() {

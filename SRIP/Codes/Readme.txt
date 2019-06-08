@@ -1,5 +1,9 @@
 The MAIN HTML File is "index.html" file.
 
+We can observe the contrast change of the arm by moving the screen using arrow keys.
+
+The input in the transition will not be accpeted if it is not a number.
+
 Please go through the MANUAL before starting the simulation and try all the features provided in the Display and World Tab.
 
 I improved the display features and ADDED THE **Figures block** in the WORLD tab.
