@@ -1,0 +1,42 @@
+						
+Please zoom out for observing the outputs in the screen after inputing the values.
+	
+All the cases are considered for having the maximum values which can be input and output can be observed in good resolution.
+
+------------------------------------------------------- TEST CASES ----------------------------------------------------------			
+	
+	----- WORLD TAB ------
+
+Enter the same x, y and z Units for all the nodes if the output should have the arm structure ideally
+
+Inputs for distance in world for all the nodes: 
+	
+	X-untis   Y-untis   Z-units
+test 1  50	  0	    0
+test 2  0	  20	    0
+test 3  0	  -20	    0
+test 4  0	  0	    30
+test 5  50	  0	    0
+
+	x-coordinate, y-coordinate and z-coordinate should belong to [-9, 9] in (x, y, z)
+	
+	x-coordinate should belong to [-50, 50] in (x, 0, 0)
+	y-coordinate should belong to [-20, 20] in (0, y, 0)
+	z-coordinate should belong to [-20, 20] in (0, 0, z)
+
+
+	----- DISPLAY TAB --------
+
+Inputs for coordinates in display for the structure (x, y, z): 
+
+test 1  (70, 0, 0)
+test 2  (0, 30, 0)
+test 3  (0, 0, 30)
+test 4  (9.5, 9.5, 9.5)
+test 5  (0, -20, 0)
+
+	x-coordinate, y-coordinate and z-coordinate should belong to [-9.5, 9.5] in (x, y, z)
+	
+	x-coordinate should belong to [-70, 70] in (x, 0, 0)
+	y-coordinate should belong to [-30, 30] in (0, y, 0)
+	z-coordinate should belong to [-30, 30] in (0, 0, z)

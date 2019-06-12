@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html>
-	<head>	
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
 		<title>Hierachical Transformations: 3D Articulated Arm</title>
 
-		 <link rel = "stylesheet" type = "text/css" href = "..\css\worldStyle.css" />
+		 <link rel = "stylesheet" type = "text/css" href = "../css/worldStyle.css" />
 	
 	</head>
 
 	<body>
-		<script src="..\..\Libraries\three.js"></script>
-		<script src="..\..\Libraries\three.min.js"></script>
-		<script src="..\..\Libraries\OrbitControls.js"></script>
-		<script type="text/javascript" src="..\js\script.js"></script>
+		<script src="../../Libraries/three.js"></script>
+		<script src="../../Libraries/three.min.js"></script>
+		<script src="../../Libraries/OrbitControls.js"></script>
+		<script type="text/javascript" src="../js/script.js"></script>
+
 
 		<div class="mainBox">
 			<div class="noteBox">
-				<p>> Refersh the page (F5), if you observe any random orientation of content</p>
-				<p>> Use the mouse and arrow keys and observe the changes in the screen</p>
+				Use the mouse and arrow keys and observe the changes in the screen. Refersh the page (F5), if you observe any random orientation of content. Read the Manual before getting started.
 			</div>
 			<div class="innerBox">
 				<p><font size="1.5"><b>Hierarchical Transformations</b><br>The Set-up: Articulated Arm</font><br><br>
 				This experiment is designed to teach a hierarchical transformation model.<br>
-				The world represented as a tree is shown below. Each node is an instance. Each instance has 3 sections: Coodinate system, shape/instance, Transformation. Coordinate system is the local coordinate system of the instance. Shape/Instance is the geometry or a child instance of the cuurent instance. Multiple shapes and child instances can be added where the child instance is again a node.<br><br>Transformation is the set of transformations applied to the position of structure w.r.t the local coordinate system.
-				<br><br>All the values being shown can be edited by clicking on them. Any changes to the tree are reflected on the display and vice-versa.
+				The world represented orderly as shown below. Each node is has 3 sections: Draw, Active and Transition.<br><br>Transition is the set of transformations applied to the position of structure w.r.t the current position / location of the structure.
+				<br><br>All the features shown in display and world can be edited by clicking on them. Any changes to the tree are reflected on the display and vice-versa.
 				<br><br>We constructed a hierarchical articulated arm model where each node/part follows a series of transformations from the root node to its current position. The top-most object in this hierarchy is the Shoulder followed by Elbow, Forearm, Wrist and Palm.</p>
 			</div>
 			<div class="label">

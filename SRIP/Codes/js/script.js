@@ -1,6 +1,10 @@
 var scene = new THREE.Scene();
-//var camera = new THREE.PerspectiveCamera( 60, (0.7*window.innerWidth) / (0.95*window.innerHeight), 0.1, 100 );
-var camera2 = new THREE.OrthographicCamera(window.innerWidth/-900, window.innerWidth/900, window.innerHeight/800, window.innerHeight/-800,0.01,1000);
+var camera = new THREE.OrthographicCamera(	window.innerWidth / -900, 
+											window.innerWidth / 900, 
+											window.innerHeight / 800, 
+											window.innerHeight / -800,
+											0.01,
+											10000 );
 
 var renderer = new THREE.WebGLRenderer();
 var heightScreen = 0.95*window.innerHeight;
@@ -12,12 +16,11 @@ window.addEventListener( 'resize' , function () {
 	var width = 0.7*window.innerWidth;
 	var height = 0.95*window.innerHeight;
 	renderer.setSize( width, height);
-	//camera.aspect = width / height;
-	camera2.aspect = width / height;
-	camera2.updateProjectionMatrix();
+	camera.aspect = width / height;
+	camera.updateProjectionMatrix();
 });
 
-controls = new THREE.OrbitControls(camera2, renderer.domElement);
+controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.maxPolarAngle = Math.PI / 2;
 controls.maxAzimuthAngle = Math.PI / 2;
 controls.enableKeys = true;
@@ -28,23 +31,24 @@ function camera2D() {
 		controls.enableRotate = true;
 		controls.maxPolarAngle = Math.PI / 2;
 		controls.maxAzimuthAngle = Math.PI / 2;
-		camera2.position.set(0.5,-0.25,2.2);
+		camera.position.set(0.5,-0.25,2.2);
 		controls.enableKeys = true;
-		camera2.rotation.y = Math.PI / 6;
-		camera2.rotation.x = -Math.PI / 10;
-		camera2.rotation.z = Math.PI / 16;
-		camera2.position.x = 1.25;
-		camera2.position.y = 0.5;
-		camera2.position.z = 2.2;
+		camera.rotation.y = Math.PI / 6;
+		camera.rotation.x = -Math.PI / 10;
+		camera.rotation.z = Math.PI / 16;
+		camera.position.x = 1.25;
+		camera.position.y = 0.5;
+		camera.position.z = 2.2;
+		light.position.set( 0, 0.2, -0.5 );
 	} else {
-		camera2.position.set(0,0,2.2);
+		camera.position.set(0,0,2.2);
 		controls.maxPolarAngle = Math.PI / 2;
-		controls.maxAzimuthAngle = Math.PI / 4;
+		controls.maxAzimuthAngle = 0;
 		controls.enableKeys = true;
 		controls.enableRotate = false;
-		camera2.rotation.x = 0;
-		camera2.rotation.y = 0;
-		camera2.rotation.z = 0;
+		camera.rotation.x = 0;
+		camera.rotation.y = 0;
+		camera.rotation.z = 0;
 	}
 }
 
@@ -55,20 +59,21 @@ var geometry3 = new THREE.BoxGeometry(0.4, 0.1, 0.4);
 // create a material, color, or image structure
 var material = new THREE.MeshLambertMaterial( { color: 0x099556, flatShading: true, wireframe: false} );
 			
-var shoulder_elbow = new THREE.Mesh( geometry, material);
-var elbow_forearm = new THREE.Mesh( geometry2, material);
-var wrist_palm = new THREE.Mesh( geometry3, material);
+var shoulderElbow = new THREE.Mesh( geometry, material);
+var elbowForearm = new THREE.Mesh( geometry2, material);
+var wristPalm = new THREE.Mesh( geometry3, material);
 			
-scene.add( shoulder_elbow, elbow_forearm, wrist_palm);
+scene.add( shoulderElbow, elbowForearm, wristPalm);
 
 //To change the background color of the scene
 scene.background = new THREE.Color( 0x4F4F4F);
 
 //To set the position of objects,camera and lightSource		
-shoulder_elbow.position.set(0.05,-0.2,0);
-elbow_forearm.position.set(0.35,-0.35,0);
-wrist_palm.position.set(0.9,-0.35,0);
+shoulderElbow.position.set(0.05,-0.2,0);
+elbowForearm.position.set(0.35,-0.35,0);
+wristPalm.position.set(0.9,-0.35,0);
 
+// Making the sphers for fixing attaching at the vertices
 var sg = new THREE.SphereGeometry( 0.008, 32, 32 );
 var sm = new THREE.MeshBasicMaterial( {color: 0xffffff} );
 var s1 = new THREE.Mesh( sg, sm );
@@ -93,9 +98,9 @@ var s18 = new THREE.Mesh( sg, sm );
 function lockV() {
 	var condition = document.getElementById('lockVertices').checked;
 	if( condition == true ) {
-		shoulder_elbow.position.set(0.05,-0.2,0);
-		elbow_forearm.position.set(0.35,-0.35,0);
-		wrist_palm.position.set(0.9,-0.35,0);
+		shoulderElbow.position.set(0.05,-0.2,0);
+		elbowForearm.position.set(0.35,-0.35,0);
+		wristPalm.position.set(0.9,-0.35,0);
 		
 		s1.position.set(0.7, -0.3, 0.2);
 		s2.position.set(1.1, -0.3, 0.2);
@@ -158,9 +163,9 @@ function lockV() {
 
 // Vertices for world tab
 function world_lockV() {
-	shoulder_elbow.position.set(0.05,-0.2,0);
-	elbow_forearm.position.set(0.35,-0.35,0);
-	wrist_palm.position.set(0.9,-0.35,0);
+	shoulderElbow.position.set(0.05,-0.2,0);
+	elbowForearm.position.set(0.35,-0.35,0);
+	wristPalm.position.set(0.9,-0.35,0);
 		
 		s1.position.set(0.7, -0.3, 0.2);
 		s2.position.set(1.1, -0.3, 0.2);
@@ -214,6 +219,9 @@ function drawPalm() {
 		scene.add(newWP1);
 	} else {
 		scene.remove(newWP1);
+		document.getElementById('palmActive').checked = false;
+		document.getElementById('wristActive').checked = false;
+		activePalm();
 	}
 }
 
@@ -228,6 +236,9 @@ function drawWrist() {
 		scene.add(newWP2);
 	} else {
 		scene.remove(newWP2);
+		document.getElementById('palmActive').checked = false;
+		document.getElementById('wristActive').checked = false;
+		activePalm();
 	}
 }
 
@@ -242,6 +253,9 @@ function drawForearm() {
 		scene.add(newEF1);
 	} else {
 		scene.remove(newEF1);
+		document.getElementById('forearmActive').checked = false;
+		document.getElementById('elbowActive').checked = false;
+		activeForearm();
 	}
 }
 
@@ -256,6 +270,9 @@ function drawElbow() {
 		scene.add(newEF2);
 	} else {
 		scene.remove(newEF2);
+		document.getElementById('forearmActive').checked = false;
+		document.getElementById('elbowActive').checked = false;
+		activeForearm();
 	}
 }
 
@@ -270,6 +287,9 @@ function drawArm() {
 		scene.add(newSA1);
 	} else {
 		scene.remove(newSA1);
+		document.getElementById('armActive').checked = false;
+		document.getElementById('shoulderActive').checked = false;
+		activeArm();
 	}
 }
 
@@ -289,6 +309,9 @@ function drawShoulder() {
 	} else {
 		scene.remove(newSA2);
 		scene.remove(light2);
+		document.getElementById('armActive').checked = false;
+		document.getElementById('shoulderActive').checked = false;
+		activeArm();
 	}
 }
 
@@ -464,7 +487,7 @@ function wf_Transition() {
 
 
 //camera.position.set(0.5,-0.25,1.5)
-camera2.position.set(0.5,-0.25,2.2);
+camera.position.set(0.5,-0.25,2.2);
 
 var ambientLight = new THREE.AmbientLight(0x099556, 0.7);
 scene.add(ambientLight);
@@ -841,31 +864,23 @@ function drawXY() {
 	}
 }
 
-
-
 var xd = 0, yd = 0, zd = 0;
-
 function startTransistion() {
 
 	document.getElementById('lockVertices').checked = false;
 	lockV();
 
-	xd = Number(document.getElementById('xUnits').value);
-	yd = Number(document.getElementById('yUnits').value);
-	zd = Number(document.getElementById('zUnits').value);
+	xd = Number(document.getElementById('xco').value);
+	yd = Number(document.getElementById('yco').value);
+	zd = Number(document.getElementById('zco').value);
 
-	shoulder_elbow.position.x += xd*0.1;
-	shoulder_elbow.position.y += yd*0.1;
-	shoulder_elbow.position.z += zd*0.1;
-
-	elbow_forearm.position.x += xd*0.1;
-	elbow_forearm.position.y += yd*0.1;
-	elbow_forearm.position.z += zd*0.1;
-
-	wrist_palm.position.x += xd*0.1;
-	wrist_palm.position.y += yd*0.1;
-	wrist_palm.position.z += zd*0.1;
-
+	xd = xd*0.1;
+	yd = yd*0.1;
+	zd = zd*0.1;
+	
+	shoulderElbow.position.set(0.05+xd,-0.2+yd,0+zd);
+	elbowForearm.position.set(0.35+xd,-0.35+yd,0+zd);
+	wristPalm.position.set(0.9+xd,-0.35+yd,0+zd);
 }
 
 function startAnimation() {
@@ -873,12 +888,12 @@ function startAnimation() {
 	document.getElementById('lockVertices').checked = false;
 	lockV();
 
-	shoulder_elbow.position.set(0,-0.2,-0.05);
-	elbow_forearm.position.set(0,-0.1615,-0.35);
-	wrist_palm.position.set(0,0.1395,-0.625);
-	wrist_palm.rotation.x = 90*(Math.PI / 180);
-	elbow_forearm.rotation.y = 90*(Math.PI / 180);
-	elbow_forearm.rotation.x = 35*(Math.PI / 180);
+	shoulderElbow.position.set(0,-0.2,-0.05);
+	elbowForearm.position.set(0,-0.1615,-0.35);
+	wristPalm.position.set(0,0.1395,-0.625);
+	wristPalm.rotation.x = 90*(Math.PI / 180);
+	elbowForearm.rotation.y = 90*(Math.PI / 180);
+	elbowForearm.rotation.x = 35*(Math.PI / 180);
 }
 
 
@@ -887,12 +902,12 @@ function removeAnimation() {
 	document.getElementById('lockVertices').checked = true;
 	lockV();
 
-	wrist_palm.rotation.x = 0*(Math.PI / 180);
-	elbow_forearm.rotation.y = 0*(Math.PI / 180);
-	elbow_forearm.rotation.x = 0*(Math.PI / 180);
-	shoulder_elbow.position.set(0.05,-0.2,0);
-	elbow_forearm.position.set(0.35,-0.35,0);
-	wrist_palm.position.set(0.9,-0.35,0);
+	wristPalm.rotation.x = 0*(Math.PI / 180);
+	elbowForearm.rotation.y = 0*(Math.PI / 180);
+	elbowForearm.rotation.x = 0*(Math.PI / 180);
+	shoulderElbow.position.set(0.05,-0.2,0);
+	elbowForearm.position.set(0.35,-0.35,0);
+	wristPalm.position.set(0.9,-0.35,0);
 }
 
 
@@ -903,7 +918,7 @@ var update = function() {
 
 //draw scene
 var render = function() {
-	renderer.render( scene, camera2);
+	renderer.render( scene, camera);
 };
 
 //run game loop (update, render, repeat)
