@@ -895,31 +895,30 @@ function startTransistion() {
 
 function startAnimation() {
 
-	document.getElementById('lockVertices').checked = false;
-	lockV();
+	var conditionAnimation = document.getElementById('animation').checked;
 
-	shoulderElbow.position.set(0,-0.2,-0.05);
-	elbowForearm.position.set(0,-0.1615,-0.35);
-	wristPalm.position.set(0,0.1395,-0.625);
-	wristPalm.rotation.x = 90*(Math.PI / 180);
-	elbowForearm.rotation.y = 90*(Math.PI / 180);
-	elbowForearm.rotation.x = 35*(Math.PI / 180);
+	if(conditionAnimation == false) {
+		document.getElementById('lockVertices').checked = false;
+		lockV();
+
+		shoulderElbow.position.set(0,-0.2,-0.05);
+		elbowForearm.position.set(0,-0.1615,-0.35);
+		wristPalm.position.set(0,0.1395,-0.625);
+		wristPalm.rotation.x = 90*(Math.PI / 180);
+		elbowForearm.rotation.y = 90*(Math.PI / 180);
+		elbowForearm.rotation.x = 35*(Math.PI / 180);
+	} else {
+		document.getElementById('lockVertices').checked = true;
+		lockV();
+
+		wristPalm.rotation.x = 0*(Math.PI / 180);
+		elbowForearm.rotation.y = 0*(Math.PI / 180);
+		elbowForearm.rotation.x = 0*(Math.PI / 180);
+		shoulderElbow.position.set(0.05,-0.2,0);
+		elbowForearm.position.set(0.35,-0.35,0);
+		wristPalm.position.set(0.9,-0.35,0);
+	}
 }
-
-
-function removeAnimation() {
-
-	document.getElementById('lockVertices').checked = true;
-	lockV();
-
-	wristPalm.rotation.x = 0*(Math.PI / 180);
-	elbowForearm.rotation.y = 0*(Math.PI / 180);
-	elbowForearm.rotation.x = 0*(Math.PI / 180);
-	shoulderElbow.position.set(0.05,-0.2,0);
-	elbowForearm.position.set(0.35,-0.35,0);
-	wristPalm.position.set(0.9,-0.35,0);
-}
-
 
 													//GAME LOGIC
 

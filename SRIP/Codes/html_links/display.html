@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="../js/script.js"></script>
 
 		<div class="mainBox">
-			<h2>3D Articulated Arm</h2>
+			<span>3D Articulated Arm</span>
 			<div class="noteBox2">
 				<p>Use the mouse and arrow keys and observe the changes in the screen. Refersh the page (F5), if you observe any random orientation of content. Read the Manual before getting started.</p>
 			</div>
@@ -27,8 +27,8 @@
 				<input type="checkbox" id="yzAxis" onclick="drawYZ()"/>Draw YZ grid in the screen<br><br>
 				<input type="checkbox" id="zxAxis" onclick="drawZX()" />Draw ZX grid in the screen<br><br>
 				<input type="checkbox" id="2DCamera" onclick="camera2D()" checked="true"/>Show the simulation in 3D<br><br>
-				<button class="a_Button" onclick="startAnimation()">Show Animation</button>
-				<button class="r_Button" onclick="removeAnimation()">Remove Animation</button>
+				<input type="checkbox" id="animation" onclick="startAnimation()" checked="true"/>Show Animation structure
+				<br><br>
 			</div>
 			<div class="innerTransformBox">
 				<p>Enter the co-ordinates in (x, y, z) here for changing the position/location of the Arm w.r.t the grid and axes</p> 

@@ -15,8 +15,7 @@ test 2  0	  20	    0
 test 3  0	  -20	    0
 test 4  0	  0	    30
 test 5  50	  0	    0
-test 5  11	  11	    0
-test 6 	21	  0	    -6
+test 5  50	  0	    0
 
 
 	----- DISPLAY TAB --------
@@ -28,4 +27,3 @@ test 2  (0, 30, 0)
 test 3  (0, 0, 30)
 test 4  (9.5, 9.5, 9.5)
 test 5  (0, -20, 0)
-test 6  (10, 5, 4)
