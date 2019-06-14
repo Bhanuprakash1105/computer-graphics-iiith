@@ -1,10 +1,14 @@
 var scene = new THREE.Scene();
-var camera = new THREE.OrthographicCamera(	window.innerWidth / -900, 
+
+var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.001, 100000 );
+
+var camera2 = new THREE.OrthographicCamera(	window.innerWidth / -900, 
 											window.innerWidth / 900, 
 											window.innerHeight / 800, 
 											window.innerHeight / -800,
 											0.01,
 											10000 );
+
 
 var renderer = new THREE.WebGLRenderer();
 var heightScreen = 0.95*window.innerHeight;
@@ -28,6 +32,9 @@ controls.enableKeys = true;
 function camera2D() {
 	var condition = document.getElementById('2DCamera').checked;
 	if( condition == true) {
+		scene.remove(camera2);
+		scene.add(camera);
+		controls = new THREE.OrbitControls(camera, renderer.domElement);
 		controls.enableRotate = true;
 		controls.maxPolarAngle = Math.PI / 2;
 		controls.maxAzimuthAngle = Math.PI / 2;
@@ -41,14 +48,17 @@ function camera2D() {
 		camera.position.z = 2.2;
 		light.position.set( 0, 0.2, -0.5 );
 	} else {
-		camera.position.set(0,0,2.2);
+		scene.remove(camera);
+		scene.add(camera2);
+		controls = new THREE.OrbitControls(camera2, renderer.domElement);
+		camera2.position.set(0,0,2.2);
 		controls.maxPolarAngle = Math.PI / 2;
 		controls.maxAzimuthAngle = 0;
 		controls.enableKeys = true;
 		controls.enableRotate = false;
-		camera.rotation.x = 0;
-		camera.rotation.y = 0;
-		camera.rotation.z = 0;
+		camera2.rotation.x = 0;
+		camera2.rotation.y = 0;
+		camera2.rotation.z = 0;
 	}
 }
 
@@ -918,7 +928,12 @@ var update = function() {
 
 //draw scene
 var render = function() {
-	renderer.render( scene, camera);
+	var someCondition = document.getElementById('2DCamera').checked;
+	if( someCondition == false) {
+		renderer.render(scene, camera2);
+	} else {
+		renderer.render( scene, camera);
+	}
 };
 
 //run game loop (update, render, repeat)

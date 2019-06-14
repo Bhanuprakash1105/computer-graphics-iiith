@@ -23,7 +23,7 @@ html, body {
 }
 
 .noteBox {
-	border: 2px solid red;
+	border: 2px solid rgba(255, 0, 0, 0.3);
 	margin-top: 7px;
 	margin-bottom: 7px;
 	padding: 5px 5px 5px 10px;
@@ -192,4 +192,10 @@ td, tr{
 	width: 150px;
 	height: 28px;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.cameraForWorld {
+	font-size: 14px;
+	margin-top: 4px;
+	margin-bottom: 4px;
 }
