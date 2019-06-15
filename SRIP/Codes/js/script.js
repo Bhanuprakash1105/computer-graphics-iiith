@@ -1,6 +1,6 @@
 var scene = new THREE.Scene();
 
-var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.001, 100000 );
+var camera = new THREE.PerspectiveCamera( 60, (0.7*window.innerWidth) / (0.95*window.innerHeight), 0.001, 100000 );
 
 var camera2 = new THREE.OrthographicCamera(	window.innerWidth / -900, 
 											window.innerWidth / 900, 
