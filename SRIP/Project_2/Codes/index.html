@@ -9,15 +9,32 @@
 
 <body>
 	<div class="heading"> <h2>Rasterization : Line</h2> </div>
-	<canvas></canvas>
+	<canvas id="frameCanvas" width="550" height="550" class="frameCanvasStyle"></canvas>
 	<script src="js/canvas.js"></script>
-	<div class="forFirstInputs">
+	<div id="forFirstInputs">
 		Enter the frame height ( max - 25 )<br>>> <input type="number" id="frameHeight" class="dimensionInput" value="15"/>
 		<br><br>
 		Enter the frame width ( max - 25 )<br>>> <input type="number" id="frameWidth" class="dimensionInput" value="15"/>
 		<br><br>
 		<input type="button" onclick="drawFrame()" value="Enter" class="enterButton" /> 
 	</div>
+	<div id="forSecondInputs">
+		Enter coordinates (x, y) of starting point<br>>> 
+		<input type="number" id="startX" class="coordinatesInput" value="0"/>
+		<input type="number" id="startY" class="coordinatesInput" value="0"/>
+		<br><br>
+		Enter coordinates (x, y) of starting point<br>>> 
+		<input type="number" id="endX" class="coordinatesInput" value="0"/>
+		<input type="number" id="endY" class="coordinatesInput" value="0"/>
+		<br><br>
+		<input type="button" onclick="coordinatesEntered()" value="Start" class="enterButton"/>
+		<a href="index.html"><input type="button" onclick="drawFrame()" value="Back" class="enterButton" /></a> 
+	</div>
+	<script type="text/javascript">document.getElementById("forSecondInputs").style.display = "none";</script>
+	<div id="forThirdInputs">
+		<input type="button" onclick="change_content()" value="Back" class="enterButton"/> 
+	</div>
+	<script type="text/javascript">document.getElementById("forThirdInputs").style.display = "none";</script>
 </body>
 
 </html>

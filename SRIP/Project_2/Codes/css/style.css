@@ -5,7 +5,7 @@ body {
 	letter-spacing: 1px;
 }
 
-canvas {
+.frameCanvasStyle {
 	float: left;
 }
 
@@ -14,9 +14,9 @@ h2 {
 	letter-spacing: 2px;
 }
 
-.forFirstInputs {
+#forFirstInputs, #forSecondInputs, #forThirdInputs {
 	width: 30%;
-	height: 67%;
+	height: 30%;
 	float: left;
 	margin: 0px 10px 5px 20px;
 	padding: 20px;
@@ -44,4 +44,11 @@ h2 {
 	width: 100px;
 	height: 30px;
 	font-size: 16px;
+}
+
+.coordinatesInput {
+	width: 40px;
+	height: 14px;
+	margin-top: 10px;
+	margin-left: 10px;
 }
