@@ -7,19 +7,39 @@ var number = canvas.getContext("2d");
 /* Variable number helps in adding the numbers around frame */
 number.font = "12px Arial";
 
+var arrayX = [];
+var arrayY = [];
+var j = 0;
+
+var numX = [];
+var numY = [];
+var numGrayX = [];
+var numGrayY = [];
+
+var grayX = [];
+var grayY = [];
+
 var flag = 0;
 var memoryHeight = 0;
 var memoryWidth = 0;
+
+var horizontalBoxes = 15;
+var verticalBoxes = 15;
+var division = 15;
+var sx = 0;
+var sy = 0;
+
+var startX = 0;
+var startY = 0;
+var endX = 0;
+var endY = 0;
+
+var toggle = "red";
 
 if ( !c ) {
 	alert("Your Browser doesn't support canvas");
 	/* Alert message if the canvas is not supported in browser */
 } else {
-	var horizontalBoxes = 15;
-	var verticalBoxes = 15;
-	var division = 15;
-	var sx = 0;
-	var sy = 0;
 
 	drawDefaultFrame();
 	/* Initially a default frame is made on canvas screen */
@@ -173,6 +193,9 @@ if ( !c ) {
 		var content1 = document.getElementById('forFirstInputs');
 		var content2 = document.getElementById('forSecondInputs');
 		var content3 = document.getElementById('forThirdInputs');
+		
+		index = 0;
+
 		if (content2.style.display === "none") {
     		c.clearRect(0, 0, 575, 575);
     		document.getElementById('frameWidth').value = memoryWidth;
@@ -188,13 +211,13 @@ if ( !c ) {
     		content3.style.display = "block";
   		}	
 	}
-	
-	function coordinatesEntered() {
-		var startX = Number(document.getElementById('startX').value);
-		var startY = Number(document.getElementById('startY').value);
 
-		var endX = Number(document.getElementById('endX').value);
-		var endY = Number(document.getElementById('endY').value);
+	function coordinatesEntered() {
+		startX = Number(document.getElementById('startX').value);
+		startY = Number(document.getElementById('startY').value);
+
+		endX = Number(document.getElementById('endX').value);
+		endY = Number(document.getElementById('endY').value);
 
 		if ( startX > endX ) {
 			/* For swaping x coordinates of starting and ending points */
@@ -207,6 +230,13 @@ if ( !c ) {
 			endY = temp;
 		}
 
+		if ( startX == endX && startY > endY ) {
+			/* For swaping y coordinates of starting and ending points */
+			var temp = startY;
+			startY = endY;
+			endY = temp;
+		}
+
 		if ( (Number.isInteger(startX) == false || Number.isInteger(startY) == false) || (Number.isInteger(endX) == false || Number.isInteger(endY) == false) ) {
 			alert("The coordinates of starting and ending points must be integer values according to the experiment");
 		} else if ( startX < 0 || startY < 0 || endX < 0 || endY < 0 ) {
@@ -215,6 +245,21 @@ if ( !c ) {
 			alert("The coordinates of starting and ending points must be less than the frame-height and frame-width according to the experiment");
 		} else {
 			change_content();	
+
+			numX = [];
+			numY = [];
+			numGrayX = [];
+			numGrayY = [];
+
+			arrayX = [];
+			arrayY = [];
+			
+			j = 0;
+			
+			grayX = [];
+			grayY = [];
+			
+			toggle = "red";
 
 			/* Saving the entered coordinates into another variable for filling the box with color */
 			var xbox = startX;
@@ -252,11 +297,12 @@ if ( !c ) {
 			/* For adding a white dot at the starting point of the Rasterization line */
 			dot.beginPath();
 			dot.arc(endX + 25, endY + 25, 2.5, 0, Math.PI * 2, false);
-			dot.fillStyle = "white";
+			dot.fillStyle = "blue";
 			dot.fill();
 
 			/* The slope of the line is calculated and stored in the vairable m */
 			var m = ( y2 - y1 ) / ( x2 - x1 ); 
+			alert(m);
 			/* Bresenham's Line Rasterization Algorithm */
 			if ( m <= 1 && m >= 0 ) {
 				/* If slope of the line belongs to [0, 1] */
@@ -265,35 +311,70 @@ if ( !c ) {
 				var p = 2*deltaY - deltaX;
 				
 				while( x1 <= x2 ) {
-					box.beginPath();
-					box.fillStyle = "red";
-					var temp = y1;
-					box.fillRect( (x1*(500/division)) + 25, ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25, 500 / division, 500 / division );
+					/*Storing the values into array */
+					arrayX[j] = (x1*(500/division)) + 25;
+					arrayY[j] = ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25;
+					numX[j] = x1;
+					numY[j] = y1;
+					var indicator = 0;
 					x1 += 1;
+					
 					if ( p < 0 ) {
 						p = p + 2*deltaY;
+						indicator = -99;
 					} else {
 						p = p + (2*deltaY) - (2*deltaX);
 						y1 += 1;
+						indicator = 99;
 					}
+					
+					grayX[j] = (x1*(500/division)) + 25;
+					grayY[j] = ((verticalBoxes - 1)*(500/division)) - ((y1-1)*(500/division)) + 25;
+					numGrayX[j] = x1;
+					numGrayY[j] = y1 - 1;
+
+					j += 1;
 				}
-			} else if ( m > 1 ) {
+			} else if ( m > 1 || m == -Infinity ) {
 				/* If slope of the line belongs to (1, infinite) */
+				/* Or if the slope of the line is -Infinity */
 				var deltaX = x2 - x1;
 				var deltaY = y2 - y1;
 				var p = 2*deltaX - deltaY;
-				
+
 				while( y1 <= y2 ) {
-					box.beginPath();
-					box.fillStyle = "red";
-					box.fillRect( (x1*(500/division)) + 25, ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25, 500 / division, 500 / division );
+					/*Storing the values into array */
+					arrayX[j] = (x1*(500/division)) + 25;
+					arrayY[j] = ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25;
+					numX[j] = x1;
+					numY[j] = y1;
+					var indicator = 0;
 					y1 += 1;
+					
 					if ( p < 0 ) {
 						p = p + 2*deltaX;
+						indicator = -99;
 					} else {
 						p = p + (2*deltaX) - (2*deltaY);
 						x1 += 1;
+						indicator = 99;
 					}
+
+					if ( indicator == 99 ) {
+						grayX[j] = ((x1-1)*(500/division)) + 25;
+						grayY[j] = ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25;
+						numGrayX[j] = x1 - 1;
+						numGrayY[j] = y1;
+					}
+
+					if ( indicator == -99 ) {
+						grayX[j] = ((x1+1)*(500/division)) + 25;
+						grayY[j] = ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25;
+						numGrayX[j] = x1 + 1;
+						numGrayY[j] = y1;
+					}					
+					
+					j += 1;
 				}
 			} else if ( m < 0 && m >= -1) {
 				/* If slope of the line belongs to [-1, 0) */
@@ -302,92 +383,69 @@ if ( !c ) {
 				var p = 2*deltaY - deltaX;
 				
 				while( x1 <= x2 ) {
-					box.beginPath();
-					box.fillStyle = "red";
-					box.fillRect( (x1*(500/division)) + 25, ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25, 500 / division, 500 / division );
+					/*Storing the values into array */
+					arrayX[j] = (x1*(500/division)) + 25;
+					arrayY[j] = ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25;
+					numX[j] = x1;
+					numY[j] = y1;
+					var indicator = 0;
 					x1 += 1;
+					
 					if ( p < 0 ) {
 						p = p + 2*deltaY;
+						indicator = -99;
 					} else {
 						p = p + (2*deltaY) - (2*deltaX);
 						y1 -= 1;
+						indicator = 99;
 					}
+
+					grayX[j] = (x1*(500/division)) + 25;
+					grayY[j] = ((verticalBoxes - 1)*(500/division)) - ((y1+1)*(500/division)) + 25;
+					numGrayX[j] = x1;
+					numGrayY[j] = y1 + 1;
+
+					j += 1;
 				}
 			} else if ( m < -1 ) {
 				/* If slope of the line belongs to ( -infinite, -1) */
-				
-				if ( x1 == x2 && y1 > y2 ) {
-					/* Special case where slope of line = -infinity */
-					while( y1 >= y2 ) {
-						box.beginPath();
-						box.fillStyle = "red";
-						box.fillRect( (x1*(500/division)) + 25, ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25, 500 / division, 500 / division );
-						y1 -= 1;
+				var deltaX = x2 - x1;
+				var deltaY = y1 - y2;
+				var p = 2*deltaX - deltaY;
+				while( y1 >= y2 ) {
+					/*Storing the values into array */
+					arrayX[j] = (x1*(500/division)) + 25;
+					arrayY[j] = ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25;
+					numX[j] = x1;
+					numY[j] = y1;
+					var indicator = 0;
+					y1 -= 1;
+					
+					if ( p < 0 ) {
+						p = p + 2*deltaX;
+						indicator = -99;
+					} else {
+						p = p + (2*deltaX) - (2*deltaY);
+						x1 += 1;
+						indicator = 99;
 					}
-				} else {
-					var deltaX = x2 - x1;
-					var deltaY = y1 - y2;
-					var p = 2*deltaX - deltaY;
-					while( y1 >= y2 ) {
-						box.beginPath();
-						box.fillStyle = "red";
-						box.fillRect( (x1*(500/division)) + 25, ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25, 500 / division, 500 / division );
-						y1 -= 1;
-						if ( p < 0 ) {
-							p = p + 2*deltaX;
-						} else {
-							p = p + (2*deltaX) - (2*deltaY);
-							x1 += 1;
-						}
-					} 
-				}
-			}
 
-			/* Re-Drawing the frame so that lines are clearly visible */ 
-			horizontalBoxes = memoryWidth;
-			verticalBoxes = memoryHeight;
-			
-			if ( horizontalBoxes >= verticalBoxes ) {
-				division = horizontalBoxes;
-			} else if ( verticalBoxes > horizontalBoxes ) {
-				division = verticalBoxes;
-			}
+					if ( indicator == 99 ) {
+						grayX[j] = ((x1-1)*(500/division)) + 25;
+						grayY[j] = ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25;
+						numGrayX[j] = x1 - 1;
+						numGrayY[j] = y1;
+					}
 
-			number.fillStyle = "white";
+					if ( indicator == -99 ) {
+						grayX[j] = ((x1+1)*(500/division)) + 25;
+						grayY[j] = ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25;
+						numGrayX[j] = x1 + 1;
+						numGrayY[j] = y1;
+					}
 
-			var sx = 0;
-			var sy = 0;
-			for (var i = 0; i <= horizontalBoxes; i++) {
-				if (i > 0) {
-					number.fillText(i - 1, sx, 15);
-					number.fillText(i - 1, sx, 40 + sy)
-				}
-				c.beginPath();
-				sy = 0;
-				c.moveTo(sx + 25, sy + 25);
-				sy = verticalBoxes*(500 / division);
-				c.lineTo(sx + 25, sy + 25);
-				c.strokeStyle = "white";
-				c.stroke();
-				sx = sx + 500 / division;
-			}
-			
-			var sx = 0;
-			var sy = 0;
-			sx = horizontalBoxes*(500 / division);
-			for (var i = verticalBoxes; i >= 0; i--) {
-				if (i > 0) {
-					number.fillText(i - 1, 32 + sx, sy + 40);
-					number.fillText(i - 1, 5, sy + 40);
-				}
-				c.beginPath();
-				sx = 0;
-				c.moveTo(sx + 25, sy + 25);
-				sx = horizontalBoxes*(500 / division);
-				c.lineTo(sx + 25, sy + 25);
-				c.strokeStyle = "white";
-				c.stroke();
-				sy = sy + 500 / division;
+					j += 1;
+				} 
 			}
 
 			var line = canvas.getContext('2d');
@@ -398,17 +456,220 @@ if ( !c ) {
 			line.lineTo( endX + 25, endY + 25);
 			line.stroke();
 
-			var dot = canvas.getContext('2d');
-			/* For adding a blue dot at the starting point of the Rasterization line */
-			dot.beginPath();
-			dot.arc(startX + 25, startY + 25, 2.5, 0, Math.PI * 2, false);
-			dot.fillStyle = "blue";
-			dot.fill();
-			/* For adding a white dot at the starting point of the Rasterization line */
-			dot.beginPath();
-			dot.arc(endX + 25, endY + 25, 2.5, 0, Math.PI * 2, false);
-			dot.fillStyle = "white";
-			dot.fill();
+			document.getElementById('pointDecision').innerHTML = "Point in consideration";
+			document.getElementById('pointDecision').style.color = "yellow";
+
+			document.getElementById('details').innerHTML = "("+numX[0]+","+numY[0]+")";
+			document.getElementById('details').style.color = "yellow";
 		}
 	}
 }
+
+index = 0;
+
+function nextIteration() {
+	box = canvas.getContext('2d');
+	grayBox = canvas.getContext('2d');
+	
+	if ( index < j ) {
+		
+		if ( toggle == "red" ) {	
+			
+			grayBox.beginPath();
+			grayBox.fillStyle = "gray";
+			grayBox.fillRect( grayX[index - 1], grayY[index - 1], 500 / division, 500 / division );
+
+			box.beginPath();
+			box.fillStyle = 'red';
+			box.fillRect( arrayX[index], arrayY[index], 500 / division, 500 / division );
+			
+			document.getElementById('pointDecision').innerHTML = "Point Decided";
+			document.getElementById('pointDecision').style.color = "red";
+
+			document.getElementById('details').innerHTML = "("+numX[index]+","+numY[index]+")";
+			document.getElementById('details').style.color = "red";
+
+			toggle = "yellow";
+		
+		} else if ( toggle == "yellow" ) {
+			
+			if ( index > 0 ) {
+				grayBox.beginPath();
+				grayBox.clearRect( grayX[index - 1], grayY[index - 1], 500 / division, 500 / division );
+			}
+
+			if ( index < j - 1 ) {
+				box.fillStyle = "rgba(208, 196, 0, 0.88)";
+				box.fillRect( arrayX[index + 1], arrayY[index + 1], 500 / division, 500 / division );
+				
+				grayBox.beginPath();
+				grayBox.fillStyle = "rgba(208, 196, 0, 0.88)";
+				grayBox.fillRect( grayX[index], grayY[index], 500 / division, 500 / division );
+			
+				document.getElementById('pointDecision').innerHTML = "Points in consideration";
+				document.getElementById('pointDecision').style.color = "yellow";
+
+				document.getElementById('details').innerHTML = "("+numX[index]+","+numY[index]+")"+" and "+"("+numGrayX[index]+","+numGrayY[index]+")";
+				document.getElementById('details').style.color = "yellow";
+			} else {
+				document.getElementById('pointDecision').innerHTML = "Line Rasterized";
+				document.getElementById('pointDecision').style.color = "red";
+
+				document.getElementById('details').innerHTML = "";
+			}
+
+			toggle = "red";
+			index += 1;
+		}
+	} else {
+		alert("Line is Rasterized");
+	}
+
+	clean = canvas.getContext('2d');
+	clean.beginPath();
+	clean.clearRect(0, 0, 25, 550);
+	clean.clearRect(0, 0, 550, 25);
+	clean.clearRect(525, 0, 25, 550);
+	clean.clearRect(0, 525, 550, 25);
+
+	drawAgainAgain();
+}
+
+function previousIteration() {
+	box = canvas.getContext('2d');
+	grayBox = canvas.getContext('2d');
+	
+	if ( index >= 0 ) {
+		if ( toggle == "yellow" ) {
+			box.beginPath();
+			box.fillStyle = "rgba(208, 196, 0, 0.88)";
+			box.fillRect( arrayX[index], arrayY[index], 500 / division, 500 / division );
+
+			if ( index > 0 ) {
+				grayBox.beginPath();
+				grayBox.fillStyle = "rgba(208, 196, 0, 0.88)";
+				grayBox.fillRect( grayX[index - 1], grayY[index - 1], 500 / division, 500 / division );
+				
+				document.getElementById('pointDecision').innerHTML = "Points in consideration";
+				document.getElementById('pointDecision').style.color = "yellow";
+
+				document.getElementById('details').innerHTML = "("+numX[index]+","+numY[index]+")"+" and "+"("+numGrayX[index]+","+numGrayY[index]+")";
+				document.getElementById('details').style.color = "yellow";
+			} else {
+				document.getElementById('pointDecision').innerHTML = "Points in consideration";
+				document.getElementById('pointDecision').style.color = "yellow";
+
+				document.getElementById('details').innerHTML = "("+numX[index]+","+numY[index]+")";
+				document.getElementById('details').style.color = "yellow";
+			}
+
+			toggle = "red";
+		
+		} else if ( toggle == "red" ) {
+			index -= 1;
+
+			if ( index >= 0 ) {
+				box.beginPath();
+				box.fillStyle = "rgba(208, 196, 0, 0.88)";
+				box.clearRect( arrayX[index + 1], arrayY[index + 1], 500 / division, 500 / division );
+				
+				grayBox.beginPath();
+				grayBox.fillStyle = "rgba(208, 196, 0, 0.88)";
+				grayBox.clearRect( grayX[index], grayY[index], 500 / division, 500 / division );
+				
+				document.getElementById('pointDecision').innerHTML = "Point Decided";
+				document.getElementById('pointDecision').style.color = "red";
+
+				document.getElementById('details').innerHTML = "("+numX[index]+","+numY[index]+")";
+				document.getElementById('details').style.color = "red";
+
+				toggle = "yellow";
+			}
+
+		}
+	} else {
+		alert("Their is no previous iteration");
+		index = 0;
+	}
+	
+	clean = canvas.getContext('2d');
+	clean.beginPath();
+	clean.clearRect(0, 0, 25, 550);
+	clean.clearRect(0, 0, 550, 25);
+	clean.clearRect(525, 0, 25, 550);
+	clean.clearRect(0, 525, 550, 25);
+
+	drawAgainAgain();
+}
+
+function drawAgainAgain() {
+	/* Re-Drawing the frame so that lines are clearly visible */ 
+	horizontalBoxes = memoryWidth;
+	verticalBoxes = memoryHeight;
+			
+	if ( horizontalBoxes >= verticalBoxes ) {
+		division = horizontalBoxes;
+	} else if ( verticalBoxes > horizontalBoxes ) {
+		division = verticalBoxes;
+	}
+
+	number.fillStyle = "white";
+
+	var sx = 0;
+	var sy = 0;
+	for (var i = 0; i <= horizontalBoxes; i++) {
+		if (i > 0) {
+			number.fillText(i - 1, sx, 15);
+			number.fillText(i - 1, sx, 40 + sy)
+		}
+		c.beginPath();
+		sy = 0;
+		c.moveTo(sx + 25, sy + 25);
+		sy = verticalBoxes*(500 / division);
+		c.lineTo(sx + 25, sy + 25);
+		c.strokeStyle = "white";
+		c.stroke();
+		sx = sx + 500 / division;
+	}
+			
+	var sx = 0;
+	var sy = 0;
+	sx = horizontalBoxes*(500 / division);
+	for (var i = verticalBoxes; i >= 0; i--) {
+		if (i > 0) {
+			number.fillText(i - 1, 32 + sx, sy + 40);
+			number.fillText(i - 1, 5, sy + 40);
+		}
+		c.beginPath();
+		sx = 0;
+		c.moveTo(sx + 25, sy + 25);
+		sx = horizontalBoxes*(500 / division);
+		c.lineTo(sx + 25, sy + 25);
+		c.strokeStyle = "white";
+		c.stroke();
+		sy = sy + 500 / division;
+	}
+
+	var line = canvas.getContext('2d');
+	/* For drawing the line from the starting point to the ending point */
+	line.beginPath();
+	line.moveTo( startX + 25, startY + 25 );
+	line.strokeStyle = "white";
+	line.lineTo( endX + 25, endY + 25);
+	line.stroke();
+
+	var dot = canvas.getContext('2d');
+	/* For adding a blue dot at the starting point of the Rasterization line */
+	dot.beginPath();
+	dot.arc(startX + 25, startY + 25, 2.5, 0, Math.PI * 2, false);
+	dot.fillStyle = "blue";
+	dot.fill();
+	/* For adding a white dot at the starting point of the Rasterization line */
+	dot.beginPath();
+	dot.arc(endX + 25, endY + 25, 2.5, 0, Math.PI * 2, false);
+	dot.fillStyle = "blue";
+	dot.fill();
+}
+
+
+
