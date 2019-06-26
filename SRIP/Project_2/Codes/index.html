@@ -11,6 +11,7 @@
 	<div class="heading"> <h2>Rasterization : Line</h2> </div>
 	<canvas id="frameCanvas" width="550" height="550" class="frameCanvasStyle"></canvas>
 	<script src="js/canvas.js"></script>
+	<!-- These is the first main div which takes frame height and frame width as inputs -->
 	<div id="forFirstInputs">
 		Enter the frame height ( max - 25 )<br>>> <input type="number" id="frameHeight" class="dimensionInput" value="15"/>
 		<br><br>
@@ -18,12 +19,13 @@
 		<br><br>
 		<input type="button" onclick="drawFrame()" value="Enter" class="enterButton" /> 
 	</div>
+	<!-- These is the second main div which takes end points of the line as inputs -->
 	<div id="forSecondInputs">
-		Enter coordinates (x, y) of starting point<br>>> 
+		Enter coordinates (x, y) of 1st end point<br>>> 
 		<input type="number" id="startX" class="coordinatesInput" value="0"/>
 		<input type="number" id="startY" class="coordinatesInput" value="0"/>
 		<br><br>
-		Enter coordinates (x, y) of starting point<br>>> 
+		Enter coordinates (x, y) of 2nd end point<br>>> 
 		<input type="number" id="endX" class="coordinatesInput" value="0"/>
 		<input type="number" id="endY" class="coordinatesInput" value="0"/>
 		<br><br>
@@ -31,7 +33,12 @@
 		<a href="index.html"><input type="button" onclick="drawFrame()" value="Back" class="enterButton" /></a> 
 	</div>
 	<script type="text/javascript">document.getElementById("forSecondInputs").style.display = "none";</script>
+	<!-- These is the third main div which shows the interations as outputs -->
 	<div id="forThirdInputs">
+		<p id="details"></p>
+		<input type="button" onclick="" value="Next Iteration" class="nextButton"/>
+		<input type="button" onclick="" value="Previous Iteration" class="previousButton"/>
+		<br><br>
 		<input type="button" onclick="change_content()" value="Back" class="enterButton"/> 
 	</div>
 	<script type="text/javascript">document.getElementById("forThirdInputs").style.display = "none";</script>

@@ -6,7 +6,6 @@ var c = canvas.getContext('2d');
 var number = canvas.getContext("2d");
 /* Variable number helps in adding the numbers around frame */
 number.font = "12px Arial";
-number.fillStyle = "white";
 
 var flag = 0;
 var memoryHeight = 0;
@@ -34,6 +33,7 @@ if ( !c ) {
 
 		c.clearRect(0, 0, 575, 575);
 		console.log(canvas);
+		number.fillStyle = "white";
 
 		sx = 0;
 		sy = 0;
@@ -54,10 +54,11 @@ if ( !c ) {
 		
 		sx = 0;
 		sy = 0;
-		for (var i = 0; i <= verticalBoxes; i++) {
+		sx = horizontalBoxes*(500 / division);
+		for (var i = verticalBoxes; i >= 0; i--) {
 			if (i > 0) {
-				number.fillText(i - 1, 5, sy + 10);
-				number.fillText(i - 1, 30 + sx, sy + 10);
+				number.fillText(i - 1, 32 + sx, sy + 40);
+				number.fillText(i - 1, 5, sy + 40);
 			}
 			c.beginPath();
 			sx = 0;
@@ -107,6 +108,7 @@ if ( !c ) {
 			/* If the inputs of user is correct and is satisfied then this else part will be executed */  
 			c.clearRect(0, 0, 575, 575);
 			console.log(canvas);
+			number.fillStyle = "white";
 
 			var sx = 0;
 			var sy = 0;
@@ -127,10 +129,11 @@ if ( !c ) {
 			
 			var sx = 0;
 			var sy = 0;
-			for (var i = 0; i <= verticalBoxes; i++) {
+			sx = horizontalBoxes*(500 / division);
+			for (var i = verticalBoxes; i >= 0; i--) {
 				if (i > 0) {
-					number.fillText(i - 1, 5, sy + 10);
-					number.fillText(i - 1, 30 + sx, sy + 10);
+					number.fillText(i - 1, 32 + sx, sy + 40);
+					number.fillText(i - 1, 5, sy + 40);
 				}
 				c.beginPath();
 				sx = 0;
@@ -193,6 +196,17 @@ if ( !c ) {
 		var endX = Number(document.getElementById('endX').value);
 		var endY = Number(document.getElementById('endY').value);
 
+		if ( startX > endX ) {
+			/* For swaping x coordinates of starting and ending points */
+			var temp = startX;
+			startX = endX;
+			endX = temp;
+			/* For swaping y coordinates of starting and ending points */
+			temp = startY;
+			startY = endY;
+			endY = temp;
+		}
+
 		if ( (Number.isInteger(startX) == false || Number.isInteger(startY) == false) || (Number.isInteger(endX) == false || Number.isInteger(endY) == false) ) {
 			alert("The coordinates of starting and ending points must be integer values according to the experiment");
 		} else if ( startX < 0 || startY < 0 || endX < 0 || endY < 0 ) {
@@ -200,17 +214,201 @@ if ( !c ) {
 		} else if ( (startX >= horizontalBoxes || endX >= horizontalBoxes) || (startY >= verticalBoxes || endY >= verticalBoxes) ) {
 			alert("The coordinates of starting and ending points must be less than the frame-height and frame-width according to the experiment");
 		} else {
-			change_content();
+			change_content();	
+
+			/* Saving the entered coordinates into another variable for filling the box with color */
+			var xbox = startX;
+			var ybox = startY;
+			var x2box = endX;
+			var y2box = endY;
+
+			/* The starting and ending coordinates are copied into (x1, y1) and (x2, y2) respectively */
+			var x1 = xbox;
+			var y1 = ybox;
+			var x2 = x2box;
+			var y2 = y2box;
+
 			startX = ( startX*( 500 / division ) ) + (250 / division);
 			startY = ( startY*( 500 / division ) ) + (250 / division);
+		
 			endX = ( endX*( 500 / division ) ) + (250 / division);
 			endY = ( endY*( 500 / division ) ) + (250 / division);
+
+			startY = (verticalBoxes*(500 / division)) - startY;
+			endY = (verticalBoxes*(500 / division)) - endY;
+
+			var box = canvas.getContext('2d');
+			/* For filling the box ( pixel ) with color */
+			box.beginPath();
+			box.fillStyle = "yellow";
+			box.fillRect( (xbox*(500/division)) + 25, ((verticalBoxes - 1)*(500/division)) - (ybox*(500/division)) + 25, 500 / division, 500 / division );
+
+			var dot = canvas.getContext('2d');
+			/* For adding a blue dot at the starting point of the Rasterization line */
+			dot.beginPath();
+			dot.arc(startX + 25, startY + 25, 2.5, 0, Math.PI * 2, false);
+			dot.fillStyle = "blue";
+			dot.fill();
+			/* For adding a white dot at the starting point of the Rasterization line */
+			dot.beginPath();
+			dot.arc(endX + 25, endY + 25, 2.5, 0, Math.PI * 2, false);
+			dot.fillStyle = "white";
+			dot.fill();
+
+			/* The slope of the line is calculated and stored in the vairable m */
+			var m = ( y2 - y1 ) / ( x2 - x1 ); 
+			/* Bresenham's Line Rasterization Algorithm */
+			if ( m <= 1 && m >= 0 ) {
+				/* If slope of the line belongs to [0, 1] */
+				var deltaX = x2 - x1;
+				var deltaY = y2 - y1;
+				var p = 2*deltaY - deltaX;
+				
+				while( x1 <= x2 ) {
+					box.beginPath();
+					box.fillStyle = "red";
+					var temp = y1;
+					box.fillRect( (x1*(500/division)) + 25, ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25, 500 / division, 500 / division );
+					x1 += 1;
+					if ( p < 0 ) {
+						p = p + 2*deltaY;
+					} else {
+						p = p + (2*deltaY) - (2*deltaX);
+						y1 += 1;
+					}
+				}
+			} else if ( m > 1 ) {
+				/* If slope of the line belongs to (1, infinite) */
+				var deltaX = x2 - x1;
+				var deltaY = y2 - y1;
+				var p = 2*deltaX - deltaY;
+				
+				while( y1 <= y2 ) {
+					box.beginPath();
+					box.fillStyle = "red";
+					box.fillRect( (x1*(500/division)) + 25, ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25, 500 / division, 500 / division );
+					y1 += 1;
+					if ( p < 0 ) {
+						p = p + 2*deltaX;
+					} else {
+						p = p + (2*deltaX) - (2*deltaY);
+						x1 += 1;
+					}
+				}
+			} else if ( m < 0 && m >= -1) {
+				/* If slope of the line belongs to [-1, 0) */
+				var deltaX = x2 - x1;
+				var deltaY = y1 - y2;
+				var p = 2*deltaY - deltaX;
+				
+				while( x1 <= x2 ) {
+					box.beginPath();
+					box.fillStyle = "red";
+					box.fillRect( (x1*(500/division)) + 25, ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25, 500 / division, 500 / division );
+					x1 += 1;
+					if ( p < 0 ) {
+						p = p + 2*deltaY;
+					} else {
+						p = p + (2*deltaY) - (2*deltaX);
+						y1 -= 1;
+					}
+				}
+			} else if ( m < -1 ) {
+				/* If slope of the line belongs to ( -infinite, -1) */
+				
+				if ( x1 == x2 && y1 > y2 ) {
+					/* Special case where slope of line = -infinity */
+					while( y1 >= y2 ) {
+						box.beginPath();
+						box.fillStyle = "red";
+						box.fillRect( (x1*(500/division)) + 25, ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25, 500 / division, 500 / division );
+						y1 -= 1;
+					}
+				} else {
+					var deltaX = x2 - x1;
+					var deltaY = y1 - y2;
+					var p = 2*deltaX - deltaY;
+					while( y1 >= y2 ) {
+						box.beginPath();
+						box.fillStyle = "red";
+						box.fillRect( (x1*(500/division)) + 25, ((verticalBoxes - 1)*(500/division)) - (y1*(500/division)) + 25, 500 / division, 500 / division );
+						y1 -= 1;
+						if ( p < 0 ) {
+							p = p + 2*deltaX;
+						} else {
+							p = p + (2*deltaX) - (2*deltaY);
+							x1 += 1;
+						}
+					} 
+				}
+			}
+
+			/* Re-Drawing the frame so that lines are clearly visible */ 
+			horizontalBoxes = memoryWidth;
+			verticalBoxes = memoryHeight;
+			
+			if ( horizontalBoxes >= verticalBoxes ) {
+				division = horizontalBoxes;
+			} else if ( verticalBoxes > horizontalBoxes ) {
+				division = verticalBoxes;
+			}
+
+			number.fillStyle = "white";
+
+			var sx = 0;
+			var sy = 0;
+			for (var i = 0; i <= horizontalBoxes; i++) {
+				if (i > 0) {
+					number.fillText(i - 1, sx, 15);
+					number.fillText(i - 1, sx, 40 + sy)
+				}
+				c.beginPath();
+				sy = 0;
+				c.moveTo(sx + 25, sy + 25);
+				sy = verticalBoxes*(500 / division);
+				c.lineTo(sx + 25, sy + 25);
+				c.strokeStyle = "white";
+				c.stroke();
+				sx = sx + 500 / division;
+			}
+			
+			var sx = 0;
+			var sy = 0;
+			sx = horizontalBoxes*(500 / division);
+			for (var i = verticalBoxes; i >= 0; i--) {
+				if (i > 0) {
+					number.fillText(i - 1, 32 + sx, sy + 40);
+					number.fillText(i - 1, 5, sy + 40);
+				}
+				c.beginPath();
+				sx = 0;
+				c.moveTo(sx + 25, sy + 25);
+				sx = horizontalBoxes*(500 / division);
+				c.lineTo(sx + 25, sy + 25);
+				c.strokeStyle = "white";
+				c.stroke();
+				sy = sy + 500 / division;
+			}
+
 			var line = canvas.getContext('2d');
+			/* For drawing the line from the starting point to the ending point */
 			line.beginPath();
 			line.moveTo( startX + 25, startY + 25 );
 			line.strokeStyle = "white";
 			line.lineTo( endX + 25, endY + 25);
 			line.stroke();
+
+			var dot = canvas.getContext('2d');
+			/* For adding a blue dot at the starting point of the Rasterization line */
+			dot.beginPath();
+			dot.arc(startX + 25, startY + 25, 2.5, 0, Math.PI * 2, false);
+			dot.fillStyle = "blue";
+			dot.fill();
+			/* For adding a white dot at the starting point of the Rasterization line */
+			dot.beginPath();
+			dot.arc(endX + 25, endY + 25, 2.5, 0, Math.PI * 2, false);
+			dot.fillStyle = "white";
+			dot.fill();
 		}
 	}
 }

@@ -1,8 +1,9 @@
 body {
 	background-color: black;
-	padding: 10px 10px 5px 120px;
+	padding: 8px 8px 8px 120px;
 	font-family: "Tre.buchet MS", Helvetica, sans-serif;
 	letter-spacing: 1px;
+	font-size: 15px;
 }
 
 .frameCanvasStyle {
@@ -12,6 +13,8 @@ body {
 h2 {
 	font-weight: normal;
 	letter-spacing: 2px;
+	margin: 0px;
+	padding: 0px;
 }
 
 #forFirstInputs, #forSecondInputs, #forThirdInputs {
@@ -19,7 +22,7 @@ h2 {
 	height: 30%;
 	float: left;
 	margin: 0px 10px 5px 20px;
-	padding: 20px;
+	padding: 15px;
 	color: white;
 }
 
@@ -27,8 +30,7 @@ h2 {
 	color: #40AFFF;
 	text-align: left;
 	font-weight: normal;
-	margin-bottom: 20px;
-	margin-left: 120px;
+	margin: 0px 0px 15px 120px;
 }
 
 .dimensionInput{
@@ -43,7 +45,7 @@ h2 {
 	font-family: "Tre.buchet MS", Helvetica, sans-serif;
 	width: 100px;
 	height: 30px;
-	font-size: 16px;
+	font-size: 13px;
 }
 
 .coordinatesInput {
@@ -52,3 +54,19 @@ h2 {
 	margin-top: 10px;
 	margin-left: 10px;
 }
+
+.nextButton, .previousButton {
+	font-weight: bold;
+	font-family: "Tre.buchet MS", Helvetica, sans-serif;
+	width: 165px;
+	height: 30px;
+	font-size: 13px;
+}
+
+.previousButton {
+	margin-left: 8px;
+}
+
+
+
+
