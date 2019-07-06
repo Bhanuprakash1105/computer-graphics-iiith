@@ -17,8 +17,8 @@ h2 {
 	padding: 0px;
 }
 
-#forFirstInputs, #forSecondInputs, #forThirdInputs {
-	width: 30%;
+#forFirstInputs, #forSecondInputs, #forThirdInputs, #forThirdDefaultInputs {
+	width: 33%;
 	height: 30%;
 	float: left;
 	margin: 0px 10px 5px 20px;
@@ -48,6 +48,24 @@ h2 {
 	font-size: 13px;
 }
 
+.startButton {
+	font-weight: bold;
+	font-family: "Tre.buchet MS", Helvetica, sans-serif;
+	width: 100px;
+	height: 30px;
+	font-size: 13px;
+	float: left;
+	margin-right: 10px;
+}
+
+.defaultButton {
+	font-weight: bold;
+	font-family: "Tre.buchet MS", Helvetica, sans-serif;
+	width: 180px;
+	height: 30px;
+	font-size: 13px;
+}
+
 .coordinatesInput {
 	width: 40px;
 	height: 14px;
@@ -67,7 +85,7 @@ h2 {
 	margin-left: 8px;
 }
 
-#pointDecision, #details {
+#pointDecision, #details, #lineEquation {
 	float: left;
 	width: 100%;
 	margin: 0px;
@@ -75,5 +93,56 @@ h2 {
 
 #details {
 	margin-top: 9px;
+	margin-bottom: 12px;
+}
+
+#lineEquation, #extraDetails1, #extraDetails2 {
+	margin-top: 3px;
+	color: white;
+	font-family: "Tre.buchet MS", Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+#lineEquation {
+	margin-bottom: 8px;
+}
+
+#extraDetails2 {
 	margin-bottom: 20px;
 }
+
+
+#pointDecisionDef, #detailsDef, #lineEquationDef {
+	float: left;
+	width: 100%;
+	margin: 0px;
+}
+
+#detailsDef {
+	margin-top: 9px;
+	margin-bottom: 12px;
+}
+
+#lineEquationDef, #extraDetails1Def, #extraDetails2Def {
+	margin-top: 3px;
+	color: white;
+	font-family: "Tre.buchet MS", Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+#lineEquationDef {
+	margin-bottom: 8px;
+}
+
+#extraDetails2Def {
+	margin-bottom: 20px;
+}
+
+form {
+	margin: 0px;
+	padding: 0px;
+	float: left;
+}
+
+
+

@@ -19,7 +19,8 @@
 		<br><br>
 		Enter the frame width ( max - 25 )<br>>> <input type="number" id="frameWidth" class="dimensionInput" value="15"/>
 		<br><br>
-		<input type="button" onclick="drawFrame()" value="Enter" class="enterButton" /> 
+		<input type="button" onclick="drawFrame()" value="Enter" class="enterButton" />
+		<input type="button" onclick="startWithDefaultValue()" value="Start With Default Values" class="defaultButton" />
 	</div>
 	
 	<!-- These is the second main div which takes end points of the line as inputs -->
@@ -32,21 +33,38 @@
 		<input type="number" id="endX" class="coordinatesInput" value="0"/>
 		<input type="number" id="endY" class="coordinatesInput" value="0"/>
 		<br><br>
-		<input type="button" onclick="coordinatesEntered()" value="Start" class="enterButton"/>
-		<a href="index.html"><input type="button" onclick="drawFrame()" value="Back" class="enterButton" /></a> 
+		<input type="button" onclick="coordinatesEntered()" value="Start" class="startButton"/>
+		<form action="index.html"><input type="button" onclick="drawFrame()" value="Back" class="enterButton"/></form>
 	</div>
-	<script type="text/javascript">document.getElementById("forSecondInputs").style.display = "none";</script>
+	<script>document.getElementById("forSecondInputs").style.display = "none";</script>
 	
 	<!-- These is the third main div which shows the interations as outputs -->
 	<div id="forThirdInputs">
 		<p id="pointDecision"></p>
 		<p id="details"></p>
+		<p id="lineEquation"></p>
+		<p id="extraDetails1"></p>
+		<p id="extraDetails2"></p>
 		<input type="button" onclick="nextIteration()" value="Next Iteration" class="nextButton"/>
 		<input type="button" onclick="previousIteration()" value="Previous Iteration" class="previousButton"/>
 		<br><br>
 		<input type="button" onclick="change_content()" value="Back" class="enterButton"/> 
 	</div>
-	<script type="text/javascript">document.getElementById("forThirdInputs").style.display = "none";</script>
+	<script>document.getElementById("forThirdInputs").style.display = "none";</script>
+
+	<!-- These is the third default div which shows the interations as outputs on starting the experiment with default values -->
+	<div id="forThirdDefaultInputs">
+		<p id="pointDecisionDef"></p>
+		<p id="detailsDef"></p>
+		<p id="lineEquationDef"></p>
+		<p id="extraDetails1Def"></p>
+		<p id="extraDetails2Def"></p>
+		<input type="button" onclick="nextIterationDef()" value="Next Iteration" class="nextButton"/>
+		<input type="button" onclick="previousIterationDef()" value="Previous Iteration" class="previousButton"/>
+		<br><br>
+		<input type="button" onclick="default_content()" value="Back" class="enterButton"/> 
+	</div>
+	<script>document.getElementById("forThirdDefaultInputs").style.display = "none";</script>
 
 </body>
 
