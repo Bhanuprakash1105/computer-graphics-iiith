@@ -46,6 +46,12 @@ var startY = 0;
 var endX = 0;
 var endY = 0;
 
+// These variables are for special case when startX == startY && endX == endY
+var specialX1 = 0;
+var specialY1 = 0;
+var specialX2 = 0;
+var specialY2 = 0;
+
 var m = 0; // For storing the value of the slope of the line
 var intercept = 0; // For storing the y-intercept of the line
 // For storing the starting points or 1st end coordinates of the line
@@ -316,6 +322,11 @@ if ( !c ) {
 			var x2 = x2box;
 			var y2 = y2box;
 
+			specialX1 = startX;
+			specialY1 = startY;
+			specialX2 = endX;
+			specialY2 = endY;
+
 			startX = ( startX*( 500 / division ) ) + (250 / division);
 			startY = ( startY*( 500 / division ) ) + (250 / division);
 		
@@ -513,6 +524,13 @@ if ( !c ) {
 			document.getElementById('lineEquation').innerHTML = "";
 			document.getElementById('extraDetails1').innerHTML = "";
 			document.getElementById('extraDetails2').innerHTML = "";
+			
+			if ( ( specialX1 == specialX2 ) && ( specialY1 == specialY2 ) ) {
+				document.getElementById('pointDecision').innerHTML = "Point in consideration";
+				document.getElementById('pointDecision').style.color = "yellow";
+				document.getElementById('details').innerHTML = "("+specialX1+","+specialY1+")";
+				document.getElementById('details').style.color = "yellow";
+			}				
 		}
 	}
 }
@@ -523,6 +541,27 @@ function nextIteration() {
 	box = canvas.getContext('2d');
 	grayBox = canvas.getContext('2d');
 	
+	if ( ( specialX1 == specialX2 ) && ( specialY1 == specialY2 ) ) {
+		box.beginPath();
+		box.fillStyle = 'red';
+		box.fillRect( (specialX1*(500/division)) + 25, ((verticalBoxes - 1)*(500/division)) - (specialY1*(500/division)) + 25, 500 / division, 500 / division);
+		
+		document.getElementById('pointDecision').innerHTML = "Point Decided";
+		document.getElementById('pointDecision').style.color = "red";
+		
+		document.getElementById('details').innerHTML = "("+specialX1+","+specialY1+")";
+		document.getElementById('details').style.color = "red";
+		
+		document.getElementById('lineEquation').innerHTML = "From the input is a point x = "+specialX1+" ,y = "+specialY1;
+		
+		toggle = "yellow";
+		alert("Line Rasterized");
+
+		drawAgainAgain();
+
+		return;
+	}
+
 	if ( index < j ) {
 		
 		if ( toggle == "red" ) {	
@@ -638,6 +677,25 @@ function previousIteration() {
 	box = canvas.getContext('2d');
 	grayBox = canvas.getContext('2d');
 	
+	if ( ( specialX1 == specialX2 ) && ( specialY1 == specialY2 ) ) {
+		box.beginPath();
+		box.fillStyle = 'yellow';
+		box.fillRect( (specialX1*(500/division)) + 25, ((verticalBoxes - 1)*(500/division)) - (specialY1*(500/division)) + 25, 500 / division, 500 / division);
+		
+		document.getElementById('pointDecision').innerHTML = "Points in consideration";
+		document.getElementById('pointDecision').style.color = "yellow";
+		
+		document.getElementById('details').innerHTML = "("+specialX1+","+specialY1+")";
+		document.getElementById('details').style.color = "yellow";
+		
+		document.getElementById('lineEquation').innerHTML = "";
+		
+		toggle = "red";
+
+		drawAgainAgain();
+		return;
+	}
+
 	if ( index >= 0 ) {
 		if ( toggle == "yellow" ) {
 			box.beginPath();
