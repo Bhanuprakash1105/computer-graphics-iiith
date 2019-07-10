@@ -4,6 +4,29 @@
 This document captures the experiment implementation details.
 
 ## Code Details
+##### File Name : home.html
+
+##### File Description :
+- This file is the html file which is linked with the style2.css.
+
+- This file contains the links to manual.html and index.html.
+
+- Basic introductory page of the experiment.
+
+##### File Name : manual.html
+
+##### File Description :
+- This file is the html file which is linked with the style2.css.
+
+- This file contains the links to home.html and index.html.
+
+- Provides manual of the experiment.
+
+##### File Name : style2.css
+
+##### File Description :
+- This file contains the CSS / styling content for home.html and manual.html files.
+
 ##### File Name : index.html
 
 ##### File Description :

@@ -1,0 +1,115 @@
+body {
+	background-color: rgba(0, 0, 0, 1);
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.main {
+	margin: 10% 12% 2% 12%;
+	background-color: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	text-align: center;
+	position: relative;
+	width: auto;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.heading1 {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	letter-spacing: 1px;
+	color: #F90ED8;
+	margin-bottom: 5px;
+}
+
+.heading2 {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	letter-spacing: 1px;
+	color: #6429F6;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.designButton {
+	width: 140px;
+	height: 35px;
+	text-align: center;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 17px;
+	font-weight: bold;
+	margin: 12px 0px 0px 0px;
+	color: rgba(0, 74, 225, 1);
+}
+
+.note {
+	font-size: 13px;
+	margin: 20px 5px 25px 5px;
+	color: white;
+}
+
+.mainManual {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	margin: 0px 20px 10px 20px;
+	background-color: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 1);
+	color: white;
+	padding: 8px 15px 15px 15px;  
+}
+
+.headingManual {
+	text-align: center;
+	color: rgba(0, 74, 225, 1);	 
+	letter-spacing: 6px;
+	font-size: 32px;
+	margin-top: 13px;
+	font-weight: bold;
+	width: auto;
+	margin: 25px 20px 1px 20px;
+	border: 1px solid rgba(255, 255, 255, 1);
+	padding: 8px 15px 15px 15px;
+	background-color: rgba(255, 255, 255, 0.08);
+}
+
+.manualContent {
+	letter-spacing: 1px;
+	word-spacing: 4px;
+	font-size: 18px;
+	font-weight: lighter;
+}
+
+.homeButton, .startButton {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	color: rgba(0, 74, 225, 1);
+	background-color: white;
+	width: 100px;
+	text-align: center;
+	padding: 5px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.homeButton {
+	float: left;
+}
+
+.startButton {
+	float: right;
+}
+
+a {
+	color: rgba(0, 74, 225, 1)
+}
+
+.contentButtons {
+	margin: 1px 30px 1px 30px;
+	padding: 8px;
+}
+
+
+
+

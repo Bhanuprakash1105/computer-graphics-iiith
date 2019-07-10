@@ -15,6 +15,7 @@ h2 {
 	letter-spacing: 2px;
 	margin: 0px;
 	padding: 0px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 #forFirstInputs, #forSecondInputs, #forThirdInputs, #forThirdDefaultInputs {
@@ -24,6 +25,7 @@ h2 {
 	margin: 0px 10px 5px 20px;
 	padding: 15px;
 	color: white;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 .heading {
@@ -31,6 +33,7 @@ h2 {
 	text-align: left;
 	font-weight: normal;
 	margin: 0px 0px 15px 120px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 .dimensionInput{
@@ -42,7 +45,16 @@ h2 {
 
 .enterButton {
 	font-weight: bold;
-	font-family: "Tre.buchet MS", Helvetica, sans-serif;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	width: 210px;
+	height: 30px;
+	font-size: 13px;
+	margin-right: 90px;
+}
+
+.backButton {
+	font-weight: bold;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	width: 100px;
 	height: 30px;
 	font-size: 13px;
@@ -50,7 +62,7 @@ h2 {
 
 .startButton {
 	font-weight: bold;
-	font-family: "Tre.buchet MS", Helvetica, sans-serif;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	width: 100px;
 	height: 30px;
 	font-size: 13px;
@@ -60,10 +72,11 @@ h2 {
 
 .defaultButton {
 	font-weight: bold;
-	font-family: "Tre.buchet MS", Helvetica, sans-serif;
-	width: 180px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	width: 210px;
 	height: 30px;
 	font-size: 13px;
+	margin: 20px 0px 5px 0px;
 }
 
 .coordinatesInput {
@@ -75,7 +88,7 @@ h2 {
 
 .nextButton, .previousButton {
 	font-weight: bold;
-	font-family: "Tre.buchet MS", Helvetica, sans-serif;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	width: 165px;
 	height: 30px;
 	font-size: 13px;
@@ -99,7 +112,7 @@ h2 {
 #lineEquation, #extraDetails1, #extraDetails2 {
 	margin-top: 3px;
 	color: white;
-	font-family: "Tre.buchet MS", Helvetica, sans-serif;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 12px;
 }
 
@@ -126,7 +139,7 @@ h2 {
 #lineEquationDef, #extraDetails1Def, #extraDetails2Def {
 	margin-top: 3px;
 	color: white;
-	font-family: "Tre.buchet MS", Helvetica, sans-serif;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 12px;
 }
 

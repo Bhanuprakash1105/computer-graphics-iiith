@@ -8,26 +8,28 @@ Please go through the MANUAL before starting the simulation.
 
 Try all the features provided in the Display and World Tab.
 
-	---------------------------------------------------------- Details about folders, files and links ----------------------------------------------------------
 
-THE SRIP contains two folders in it, Codes and Libraries.In the "Libraries" folder we have 3 Javascript files required for 3D graphics in Javascript.
+	Details about folders, files and links
 
-In the "Codes" folder we have the following:
+1. THE SRIP contains two folders in it, Codes and Libraries.In the "Libraries" folder we have 3 Javascript files required for 3D graphics in Javascript.
 
- >> The main html file is "index.html" file
+2. In the "Codes" folder we have the following:
+	>> The "Documentation" folder contains: ProjectDocumentation, TestCases, ProcedureDocumentation and CodeDocumentation files written in markdown language. 
 
- >> The "index.html" file is linked with the "world.html" and "manual.html" files present inside the "html_links" folder
+	>> The main html file is "index.html" file
 
- >> All the CSS files are present in "css" folder
+	>> The "index.html" file is linked with the "world.html" and "manual.html" files present inside the "html_links" folder
 
- >> The "index.html" and "manual.html" are linked with the "indexStyle.css" file
+	>> All the CSS files are present in "css" folder
 
- >> The "world.html" and "display.html" files are linked with the "worldStyle.css" file
+	>> The "index.html" and "manual.html" are linked with the "indexStyle.css" file
 
- >> The javascript file "script.js" is present in the "js" folder
+	>> The "world.html" and "display.html" files are linked with the "worldStyle.css" file
 
- >> This "script.js" is linked with all the 3 files present in "Libraries" folder and this folder is present outside of the "Codes" folder
+	>> The javascript file "script.js" is present in the "js" folder
 
- >> The "world.html" and "manual.html" files are linked with the "script.js" file
+	>> This "script.js" is linked with all the 3 files present in "Libraries" folder and this folder is present outside of the "Codes" folder
 
-Read the Manual by clicking on the Manual button provided in the home-page before starting the experiment.
+	>> The "world.html" and "manual.html" files are linked with the "script.js" file
+
+3. Read the Manual by clicking on the Manual button provided in the home-page before starting the experiment.

@@ -4,14 +4,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Rasterization : Line</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 
 <body>
 	
 	<div class="heading"> <h2>Rasterization : Line</h2> </div>
 	<canvas id="frameCanvas" width="550" height="550" class="frameCanvasStyle"></canvas>
-	<script src="js/canvas.js"></script>
+	<script src="../js/canvas.js"></script>
 	
 	<!-- These is the first main div which takes frame height and frame width as inputs -->
 	<div id="forFirstInputs">
@@ -34,7 +34,7 @@
 		<input type="number" id="endY" class="coordinatesInput" value="0"/>
 		<br><br>
 		<input type="button" onclick="coordinatesEntered()" value="Start" class="startButton"/>
-		<form action="index.html"><input type="button" onclick="drawFrame()" value="Back" class="enterButton"/></form>
+		<input type="button" onclick="window.location.href='index.html'" value="Back" class="backButton"/>
 	</div>
 	<script>document.getElementById("forSecondInputs").style.display = "none";</script>
 	
@@ -48,7 +48,7 @@
 		<input type="button" onclick="nextIteration()" value="Next Iteration" class="nextButton"/>
 		<input type="button" onclick="previousIteration()" value="Previous Iteration" class="previousButton"/>
 		<br><br>
-		<input type="button" onclick="change_content()" value="Back" class="enterButton"/> 
+		<input type="button" onclick="change_content()" value="Back" class="backButton"/> 
 	</div>
 	<script>document.getElementById("forThirdInputs").style.display = "none";</script>
 
@@ -62,7 +62,7 @@
 		<input type="button" onclick="nextIterationDef()" value="Next Iteration" class="nextButton"/>
 		<input type="button" onclick="previousIterationDef()" value="Previous Iteration" class="previousButton"/>
 		<br><br>
-		<input type="button" onclick="default_content()" value="Back" class="enterButton"/> 
+		<input type="button" onclick="default_content()" value="Back" class="backButton"/> 
 	</div>
 	<script>document.getElementById("forThirdDefaultInputs").style.display = "none";</script>
 

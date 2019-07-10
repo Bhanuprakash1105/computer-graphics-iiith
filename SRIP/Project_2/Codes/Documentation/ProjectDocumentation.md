@@ -5,7 +5,9 @@ This  document captures the technical details related to the experiment developm
 
 ## Project
 **Domain Name :** Computer Science & Engineering   
+
 **Lab Name :** Computer Graphics    
+
 **Experiment Name :** Rasterization : Line
 
 In digital display systems, everything that is displayed, is displayed in terms of a smallest unit of display, which is called a pixel. This is in contrast to what we perceive the world to be as continuous. The space occupied by any image in digital display system is measured in terms of pixels.
