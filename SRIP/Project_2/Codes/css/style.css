@@ -66,8 +66,7 @@ h2 {
 	width: 100px;
 	height: 30px;
 	font-size: 13px;
-	float: left;
-	margin-right: 10px;
+	margin-right: 1px;
 }
 
 .defaultButton {
@@ -157,5 +156,20 @@ form {
 	float: left;
 }
 
+.designButton {
+	width: 100px;
+	height: 30px;
+	text-align: center;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	margin: 12px 0px 0px 0px;
+	color: rgba(0, 74, 225, 1);
+}
+
+#toKeepStatic {
+	bottom: 400px;
+	position: fixed;
+}
 
 

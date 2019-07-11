@@ -66,24 +66,24 @@ p, ul {
 
 .nextButton {
 	color: #771AFD;
-	font-size: 18px;
+	font-size: 15px;
 	float: right;
 	margin-top: 9px;
 	margin-bottom: 14px;
 	margin-right: 10%;
 	height: 35px;
-	width: 100px;
+	width: 110px;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 .previousButton {
 	color: #771AFD;
-	font-size: 18px;
+	font-size: 15px;
 	float: left;
 	margin-top: 9px;
 	margin-left: 10%;
 	margin-bottom: 14px;
 	height: 35px;
-	width: 100px;
+	width: 110px;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }

@@ -21,6 +21,8 @@
 		<br><br>
 		<input type="button" onclick="drawFrame()" value="Enter" class="enterButton" />
 		<input type="button" onclick="startWithDefaultValue()" value="Start With Default Values" class="defaultButton" />
+		<input type="button" value="Manual" class="designButton"
+			onclick="window.location.href='manual.html'"/>
 	</div>
 	
 	<!-- These is the second main div which takes end points of the line as inputs -->
@@ -35,6 +37,8 @@
 		<br><br>
 		<input type="button" onclick="coordinatesEntered()" value="Start" class="startButton"/>
 		<input type="button" onclick="window.location.href='index.html'" value="Back" class="backButton"/>
+		<input type="button" value="Manual" class="designButton"
+			onclick="window.location.href='manual.html'"/>
 	</div>
 	<script>document.getElementById("forSecondInputs").style.display = "none";</script>
 	
@@ -45,10 +49,14 @@
 		<p id="lineEquation"></p>
 		<p id="extraDetails1"></p>
 		<p id="extraDetails2"></p>
-		<input type="button" onclick="nextIteration()" value="Next Iteration" class="nextButton"/>
-		<input type="button" onclick="previousIteration()" value="Previous Iteration" class="previousButton"/>
-		<br><br>
-		<input type="button" onclick="change_content()" value="Back" class="backButton"/> 
+		<div id="toKeepStatic">
+			<input type="button" onclick="nextIteration()" value="Next Iteration" class="nextButton"/>
+			<input type="button" onclick="previousIteration()" value="Previous Iteration" class="previousButton"/>
+			<br><br>
+			<input type="button" onclick="change_content()" value="Back" class="backButton"/> 
+			<input type="button" value="Manual" class="designButton"
+				onclick="window.location.href='manual.html'"/>
+		</div>
 	</div>
 	<script>document.getElementById("forThirdInputs").style.display = "none";</script>
 
@@ -59,10 +67,14 @@
 		<p id="lineEquationDef"></p>
 		<p id="extraDetails1Def"></p>
 		<p id="extraDetails2Def"></p>
-		<input type="button" onclick="nextIterationDef()" value="Next Iteration" class="nextButton"/>
-		<input type="button" onclick="previousIterationDef()" value="Previous Iteration" class="previousButton"/>
-		<br><br>
-		<input type="button" onclick="default_content()" value="Back" class="backButton"/> 
+		<div id="toKeepStatic">
+			<input type="button" onclick="nextIterationDef()" value="Next Iteration" class="nextButton"/>
+			<input type="button" onclick="previousIterationDef()" value="Previous Iteration" class="previousButton"/>
+			<br><br>
+			<input type="button" onclick="default_content()" value="Back" class="backButton"/> 
+			<input type="button" value="Manual" class="designButton"
+				onclick="window.location.href='manual.html'"/>
+		</div>
 	</div>
 	<script>document.getElementById("forThirdDefaultInputs").style.display = "none";</script>
 
