@@ -1,6 +1,6 @@
 var scene = new THREE.Scene();
 
-var camera = new THREE.PerspectiveCamera( 60, (0.7*window.innerWidth) / (0.95*window.innerHeight), 0.001, 100000 );
+var camera = new THREE.PerspectiveCamera( 75, (0.62*window.innerWidth) / (0.9*window.innerHeight), 0.001, 100000 );
 
 var camera2 = new THREE.OrthographicCamera(	window.innerWidth / -900, 
 											window.innerWidth / 900, 
@@ -11,14 +11,14 @@ var camera2 = new THREE.OrthographicCamera(	window.innerWidth / -900,
 
 
 var renderer = new THREE.WebGLRenderer();
-var heightScreen = 0.95*window.innerHeight;
-var widthScreen = 0.7*window.innerWidth;
+var heightScreen = 0.9*window.innerHeight;
+var widthScreen = 0.62*window.innerWidth;
 renderer.setSize( widthScreen, heightScreen);
 document.body.appendChild( renderer.domElement );
 
 window.addEventListener( 'resize' , function () {
-	var width = 0.7*window.innerWidth;
-	var height = 0.95*window.innerHeight;
+	var width = 0.62*window.innerWidth;
+	var height = 0.9*window.innerHeight;
 	renderer.setSize( width, height);
 	camera.aspect = width / height;
 	camera.updateProjectionMatrix();
@@ -928,7 +928,7 @@ var update = function() {
 //draw scene
 var render = function() {
 	var someCondition = document.getElementById('2DCamera').checked;
-	if( someCondition == false) {
+	if( someCondition === false) {
 		renderer.render(scene, camera2);
 	} else {
 		renderer.render( scene, camera);

@@ -1,9 +1,20 @@
 body {
-	background-color: black;
+	background-color: rgba(0, 0, 0, 1);
 	padding: 8px 8px 8px 120px;
-	font-family: "Tre.buchet MS", Helvetica, sans-serif;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	letter-spacing: 1px;
 	font-size: 15px;
+}
+
+canvas {
+	border: 1px solid rgba(255, 255, 255, 1);
+	background-color: rgba(255, 255, 225, 0.03);
+	padding: 7px;
+}
+
+#forFirstInputs, #forSecondInputs, #forThirdInputs, #forThirdDefaultInputs {
+	background-color: rgba(0, 74, 225, 0.09);
+	border: 1px solid rgba(0, 74, 225, 1);
 }
 
 .frameCanvasStyle {
@@ -11,6 +22,7 @@ body {
 }
 
 h2 {
+	font-size: 28px;
 	font-weight: normal;
 	letter-spacing: 2px;
 	margin: 0px;
@@ -29,10 +41,10 @@ h2 {
 }
 
 .heading {
-	color: #40AFFF;
+	color: rgba(0, 74, 225, 1);
 	text-align: left;
 	font-weight: normal;
-	margin: 0px 0px 15px 120px;
+	margin: 0px 0px 25px 300px;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
@@ -168,8 +180,295 @@ form {
 }
 
 #toKeepStatic {
-	bottom: 400px;
+	bottom: 300px;
 	position: fixed;
+	top: 300px;
+}
+
+/* SMARTPHONES PORTRAIT */
+@media only screen and (min-width: 300px) {
+	canvas {
+		width: 40%;
+		height: width;
+	}
+
+	h2 {
+		font-size: 8px;
+	}
+
+	div {
+		font-size: 7px;
+	}
+
+	.enterButton, .nextButton, .previousButton, .backButton, .defaultButton, .startButton, .designButton {
+		font-size: 7px;
+		width: 45px;
+	}
+
+	#lineEquationDef, #extraDetails1Def, #extraDetails2Def, #pointDecisionDef, #detailsDef, #lineEquationDef {
+		font-size: 6px;
+	}
+
+	#pointDecision, #details, #lineEquation {
+		font-size: 6px;
+	}
+
+	.heading {
+		margin-left: 60px;
+	}
+
+	.enterButton {
+		width: 110px;
+		height: 19px;
+	}
+
+	.backButton {
+		width: 60px;
+		height: 19px;
+	}
+
+	.startButton, .designButton {
+		width: 60px;
+		height: 19px;
+	}
+
+	.defaultButton {
+		width: 60px;
+		height: 19px;
+	}
+
+	.coordinatesInput {
+		width: 23px;
+		height: 9px;
+	}
+
+	.nextButton, .previousButton {
+		width: 80px;
+		height: 19px;
+	}
+
+}
+
+/* SMARTPHONES LANDSCAPE */
+@media only screen and (min-width: 480px) {
+	canvas {
+		width: 40%;
+		height: width;
+	}
+
+	h2 {
+		font-size: 12px;
+	}
+
+	div {
+		font-size: 7px;
+	}
+
+	.enterButton, .nextButton, .previousButton, .backButton, .defaultButton, .startButton, .designButton {
+		font-size: 7px;
+	}
+
+	#lineEquationDef, #extraDetails1Def, #extraDetails2Def, #pointDecisionDef, #detailsDef, #lineEquationDef {
+		font-size: 6px;
+	}
+
+	#pointDecision, #details, #lineEquation {
+		font-size: 6px;
+	}
+
+	.heading {
+		margin-left: 75px;
+	}
+
+}
+
+/* TABLETS PORTRAIT */
+@media only screen and (min-width: 768px) {
+	canvas {
+		width: 40%;
+		height: width;
+	}
+
+	h2 {
+		font-size: 14px;
+	}
+
+	div {
+		font-size: 9px;
+	}
+
+	.enterButton, .nextButton, .previousButton, .backButton, .defaultButton, .startButton, .designButton {
+		font-size: 9px;
+		width: 75px;
+	}
+
+	#lineEquationDef, #extraDetails1Def, #extraDetails2Def, #pointDecisionDef, #detailsDef, #lineEquationDef {
+		font-size: 8px;
+	}
+
+	#pointDecision, #details, #lineEquation {
+		font-size: 8px;
+	}
+
+	.heading {
+		margin-left: 120px;
+	}
+
+	.enterButton {
+		width: 160px;
+		height: 23px;
+	}
+
+	.backButton {
+		width: 80px;
+		height: 23px;
+	}
+
+	.startButton, .designButton {
+		width: 80px;
+		height: 23px;
+	}
+
+	.defaultButton {
+		width: 80px;
+		height: 23px;
+	}
+
+	.coordinatesInput {
+		width: 28px;
+		height: 10px;
+	}
+
+	.nextButton, .previousButton {
+		width: 100px;
+		height: 23px;
+	}
+
 }
 
 
+/* TABLET LANDSCAPE / DESKTOP */
+@media only screen and (min-width: 1024px) {
+	canvas {
+		width: 40%;
+		height: width;
+	}
+
+	h2 {
+		font-size: 21px;
+	}
+
+	div {
+		font-size: 11px;
+	}
+
+	.enterButton, .nextButton, .previousButton, .backButton, .defaultButton, .startButton, .designButton {
+		font-size: 11px;
+	}
+
+	#lineEquationDef, #extraDetails1Def, #extraDetails2Def, #pointDecisionDef, #detailsDef, #lineEquationDef {
+		font-size: 10px;
+	}
+
+	#pointDecision, #details, #lineEquation {
+		font-size: 10px;
+	}
+
+	.heading {
+		margin-left: 330px;
+	}
+
+	.enterButton {
+		width: 210px;
+		height: 30px;
+	}
+
+	.backButton {
+		width: 100px;
+		height: 30px;
+	}
+
+	.startButton, .designButton {
+		width: 100px;
+		height: 30px;
+	}
+
+	.defaultButton {
+		width: 210px;
+		height: 30px;
+	}
+
+	.coordinatesInput {
+		width: 40px;
+		height: 14px;
+	}
+
+	.nextButton, .previousButton {
+		width: 165px;
+		height: 30px;
+	}
+
+}    
+
+/* Good Resolution */
+@media only screen and (min-width: 1300px) {
+	canvas {
+		width: 40%;
+		height: width;
+	}
+
+	h2 {
+		font-size: 28px;
+	}
+
+	div {
+		font-size: 13px;
+	}
+
+	.enterButton {
+		width: 210px;
+		height: 30px;
+	}
+
+	.backButton {
+		width: 100px;
+		height: 30px;
+	}
+
+	.startButton, .designButton {
+		width: 100px;
+		height: 30px;
+	}
+
+	.defaultButton {
+		width: 210px;
+		height: 30px;
+	}
+
+	.coordinatesInput {
+		width: 40px;
+		height: 14px;
+	}
+
+	.nextButton, .previousButton {
+		width: 165px;
+		height: 30px;
+	}
+
+	.enterButton, .nextButton, .previousButton, .backButton, .defaultButton, .startButton, .designButton {
+		font-size: 13px;
+	}
+
+	#lineEquationDef, #extraDetails1Def, #extraDetails2Def, #pointDecisionDef, #detailsDef, #lineEquationDef {
+		font-size: 12px;
+	}
+
+	#pointDecision, #details, #lineEquation {
+		font-size: 12px;
+	}
+
+	.heading {
+		margin-left: 345px;
+	}
+
+}    

@@ -85,9 +85,12 @@
 				</table>
 				<center><button class="wf_button" onclick="wf_Transition()">Submit</button></center>
 			</div>
-			<div class="cameraForWorld">
+			<div class="cameraForWorld" id="hideThis">
 				<input type="checkbox" id="2DCamera" onclick="camera2D()" checked="true"/>Show the simulation in 3D<br>
 			</div>
+			<script type="text/javascript">
+				document.getElementById('hideThis').style.display = "none";
+			</script>
 			<a href="world.html"><button id="world" class="w_Button">World</button></a>
 			<a href="display.html"><button id="display" class="d_Button">Display</button></a>
 			<a href="manual.html"><button class="m_Button">Manual</button></a>
