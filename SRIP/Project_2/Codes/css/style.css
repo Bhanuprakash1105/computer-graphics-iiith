@@ -88,6 +88,8 @@ h2 {
 	height: 30px;
 	font-size: 13px;
 	margin: 20px 0px 5px 0px;
+	text-align: left;
+	padding-left: 15px;
 }
 
 .coordinatesInput {
@@ -233,7 +235,7 @@ form {
 	}
 
 	.defaultButton {
-		width: 60px;
+		width: 110px;
 		height: 19px;
 	}
 
@@ -278,6 +280,36 @@ form {
 
 	.heading {
 		margin-left: 75px;
+	}
+	
+	.enterButton {
+		width: 110px;
+		height: 19px;
+	}
+
+	.backButton {
+		width: 60px;
+		height: 19px;
+	}
+
+	.startButton, .designButton {
+		width: 60px;
+		height: 19px;
+	}
+
+	.defaultButton {
+		width: 110px;
+		height: 19px;
+	}
+
+	.coordinatesInput {
+		width: 23px;
+		height: 9px;
+	}
+
+	.nextButton, .previousButton {
+		width: 80px;
+		height: 19px;
 	}
 
 }
@@ -330,7 +362,7 @@ form {
 	}
 
 	.defaultButton {
-		width: 80px;
+		width: 180px;
 		height: 23px;
 	}
 
